@@ -9,40 +9,29 @@ public class Employee {
 	private String department;
 	private String email;
 	private String type;
-	public String getType() {
-		return type;
-	}
+	private String addedOn;
+	private String updatedOn;
+	
+	public Employee(){}
+	
+	
 	@Override
 	public String toString() {
 		return "Employee [employeeId=" + employeeId + ", password=" + password + ", employeeName=" + employeeName
 				+ ", designation=" + designation + ", department=" + department + ", email=" + email + ", type=" + type
-				+ "]";
-	}
-	public Employee(Integer employeeId, String password, String employeeName, String designation, String department,
-			String email, String type) {
-		super();
-		this.employeeId = employeeId;
-		this.password = password;
-		this.employeeName = employeeName;
-		this.designation = designation;
-		this.department = department;
-		this.email = email;
-		this.type = type;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public void setType(String type) {
-		this.type = type;
+				+ ", addedOn=" + addedOn + ", updatedOn=" + updatedOn + "]";
 	}
 	public Integer getEmployeeId() {
 		return employeeId;
 	}
 	public void setEmployeeId(Integer employeeId) {
 		this.employeeId = employeeId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getEmployeeName() {
 		return employeeName;
@@ -68,10 +57,24 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getAddedOn() {
+		return addedOn;
+	}
+	public void setAddedOn(String addedOn) {
+		this.addedOn = addedOn;
+	}
+	public String getUpdatedOn() {
+		return updatedOn;
+	}
+	public void setUpdatedOn(String updatedOn) {
+		this.updatedOn = updatedOn;
+	}
 	
-	public Employee() {}
 	
-	
-
 }

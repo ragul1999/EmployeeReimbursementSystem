@@ -9,7 +9,7 @@
     </head>
     
     <body>
-        <form action="#" style="border:1px solid #ccc" autocomplete="off" method="get">
+        <form action="http://localhost:8080/controller/EmployeeRegistrationServlet" style="border:1px solid #ccc" autocomplete="off" method="post">
             <div class="container">
                 <div style="text-align: center;"> 
               <h1>Sign Up</h1>
@@ -63,7 +63,7 @@
               <input type="email" placeholder="Enter Email" name="email" required>
           
               <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
+              <input type="password" placeholder="Enter Password" name="pwd" required>
           
               <label for="psw-repeat"><b>Repeat Password</b></label>
               <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
@@ -79,9 +79,9 @@
           
               <div class="clearfix">
                
-               <button type="button" class="cancelbtn" style="margin-right: 6%;">Cancel</button>
+               <button type="reset" class="cancelbtn" style="margin-right: 6%;">Cancel</button>
               <button type="submit" class="signupbtn"  >Sign Up</button>
-              <span class="psy">Already have an account?  <a href="add_reimbursement.html?id=1234">Log in</a></span>
+              <span class="psy">Already have an account?  <a href="http://localhost:8080/controller/login.html">Log in</a></span>
                  
               </div>
             </div>
