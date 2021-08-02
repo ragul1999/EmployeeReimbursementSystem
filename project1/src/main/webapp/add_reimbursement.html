@@ -8,8 +8,8 @@
     </head>
     <body>
        
-   <form action="#" method="get" autocomplete="off">
-           <a href="signup.html"><span class="log-out-btn">Log out</span></a>
+   <form action="http://localhost:8080/controller/EmployeeReimbursement" method="get" autocomplete="off">
+           <a href="http://localhost:8080/controller/signup.html"><span class="log-out-btn">Log out</span></a>
 
            <div class="container" >
              <div style="text-align: center;">
@@ -69,7 +69,7 @@
                  
                   // Set the href property.
                   var link=document.getElementById("demo");
-                  link.href="login.html"+"?"+id.substring(1);
+                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1);
                  // a.href = "login.html"; 
                     
                   // Append the anchor element to the body.
