@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="login.css">
+    </head>
+    <body>
+   <form action="#" method="get" autocomplete="off">
+           <div class="container" >
+             <div style="text-align: center;">
+            <h1 >Login</h1>
+            <p >Please fill in this form to log into your account.</p>
+        </div>
+            <hr>
+            <label for="id"  ><b>ID</b></label>
+             <input type="text" placeholder="Enter ID" name="id" required>
+           
+            <label for="psw" ><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+                
+         <label for="type" ><b>Type</b></label>
+          <select name="type" id="type" type="text"  required>
+            <option type="text" value="none" selected disabled hidden>Choose type</option>
+            <option type="text" value="employee" >Employee</option>
+                <option type="text" value="manager">Manager</option>
+             
+             </select>
+             
+            </div>
+      
+            <div class="container" style="background-color:#f1f1f1">
+             <button type="button" class="cancelbtn" style="margin-right: 6%;">Cancel</button>
+              <button type="submit" class="loginbtn">Login</button>
+              <span class="psy">Not registered?<a href="signup.html">Create an account</a></span>
+              <span class="psw" ><a href="http://localhost:8080/ers/add_reimbursement.html?id=">Back to Home page</a></span>
+            </div>
+           
+          </form>
+        
+    </body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Expense Reimbursement page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="add_reimbursement.css">
+    </head>
+    <body>
+       
+   <form action="#" method="get" autocomplete="off">
+           <a href="signup.html"><span class="log-out-btn">Log out</span></a>
+
+           <div class="container" >
+             <div style="text-align: center;">
+            <h2 >Add Expense Reimbursement Details</h2>
+          
+        </div>
+            <hr>
+            <label for="id"  ><b>Employee ID</b></label>
+             <input type="text" placeholder="Enter ID" name="id" required>
+         <label for="type" ><b>Reimbursement Type</b></label>
+          <select name="reimburse-type" id="type" type="text"  required>
+            <option type="text" value="none" selected disabled hidden>Choose type</option>
+            <option type="text" value="food" >Food</option>
+                <option type="text" value="medical-expense">Medical Expense</option>
+                <option type="text" value="travel">Travel</option>
+                <option type="text" value="lodging">Lodging</option>
+                <option type="text" value="others">Others</option>
+             </select>
+             <label for="days-spent"  ><b>Number of days spent</b></label>
+             <input type="number" min="1" placeholder="Enter days spent" name="days-spent" required>
+             <label for="reimburse-amount"  ><b>Reimbursement amount</b></label>
+             <input type="number" min="1" placeholder="Enter reimburse amount" name="reimburse-amount" required>
+             <label for="description"  ><b>Description(optional)</b></label>
+             <textarea name="description" rows="2" cols="10"></textarea>
+            </div>
+      
+            <div class="container" style="background-color:#f1f1f1">
+             <button type="reset" class="cancelbtn" style="margin-right: 6%;">Cancel</button> 
+              <button type="submit" class="submitbtn">Submit</button>
+              
+            </div>
+           
+          </form>
+          <div class="navs">
+              <ul>
+                <li>  <a id="demo" href="#">View Reimbursement History</a></li><br>
+                <li> <a href="">View Approved Reimbursement List</a></li><br>
+                    <li> <a href="">View Pending Reimbursement History</a></li><br>
+                        <li> <a href="">View Rejected Reimbursement History</a></li>
+        </ul>
+         </div>
+        <script>
+            //function viewHistory() {
+                  
+                  // Create anchor element.
+                 // var a = document.createElement('a'); 
+                    
+                  // Create the text node for anchor element.
+                 // var link = document.createTextNode("View Reimbursement History by js");
+                    
+                  // Append the text node to anchor element.
+                 // a.appendChild(link); 
+                    
+                  // Set the title.
+                 // a.title = "This is Link"; 
+                 var id = window.location.search;
+                 
+                  // Set the href property.
+                  var link=document.getElementById("demo");
+                  link.href="login.html"+"?"+id.substring(1);
+                 // a.href = "login.html"; 
+                    
+                  // Append the anchor element to the body.
+                 // document.body.prepend(a); 
+            //  }
+        </script>
+    </body>
+</html>
