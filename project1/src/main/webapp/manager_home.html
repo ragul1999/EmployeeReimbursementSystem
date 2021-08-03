@@ -7,37 +7,53 @@
     </head>
     <body >
        
-        <h1 id="head">Expense Reimbursement Manager Access page</h1>
+        <h1 id="head">Expense Reimbursement System- Manager Access page</h1>
         <div class="container">
+       <p> <a  href="http://localhost:8080/controller/signup.html"><span class="log-out-btn">Back to Home</span></a></p>
      <table id="customers">
          <tr>
-             <td>View all expense reimburse list</td>
-             <td><a href="#">Click here</a></td>
+             <td>View all expense reimbursement list</td>
+             <td><a id="demo" href="#">Click here</a></td>
          </tr>
          <tr>
-            <td>View all pending expense reimburse list</td>
-            <td><a href="#">Click here</a></td>
+            <td>View all approved expense reimbursement list</td>
+            <td><a id="demo1" href="#">Click here</a></td>
         </tr>
         <tr>
-            <td>View all resolved expense reimburse list</td>
-            <td><a href="#">Click here</a></td>
+            <td>View all pending expense reimbursement list</td>
+            <td><a id="demo2" href="#">Click here</a></td>
         </tr>
         <tr>
-            <td>View all rejected expense reimburse list</td>
-            <td><a href="#">Click here</a></td>
+            <td>View all rejected expense reimbursement list</td>
+            <td><a id="demo3" href="#">Click here</a></td>
         </tr>
         <tr>
-            <td>View expense reimburse list by reimbusement id</td>
-            <td><a href="#">Click here</a></td>
+            <td>View expense reimbursement list by reimburseId</td>
+            <td><a id="demo4" href="#">Click here</a></td>
         </tr>
         <tr>
-            <td>View all expense reimburse list by employee id</td>
-            <td><a href="#">Click here</a></td>
+            <td>View all expense reimbursement list by employeeId</td>
+            <td><a id="demo5" href="#">Click here</a></td>
         </tr>
      </table>
     </div>  
-
-
+ <script>
+ 				var id = window.location.search;
+               	//ers history
+                  var link=document.getElementById("demo");
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet";
+                  //ers approved list
+                  var link=document.getElementById("demo1");
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=approved";
+                  //ers pending list
+                  var link=document.getElementById("demo2");
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=pending";
+                  //ers rejected list
+                  var link=document.getElementById("demo3");
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=rejected";
+                 
+        </script>
+ 
       
 </body>
 
