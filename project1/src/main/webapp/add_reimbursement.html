@@ -46,35 +46,27 @@
           <div class="navs">
               <ul>
                 <li>  <a id="demo" href="#">View Reimbursement History</a></li><br>
-                <li> <a href="">View Approved Reimbursement List</a></li><br>
-                    <li> <a href="">View Pending Reimbursement History</a></li><br>
-                        <li> <a href="">View Rejected Reimbursement History</a></li>
+                <li> <a id="demo1" href="#">View Approved Reimbursement List</a></li><br>
+                    <li> <a id="demo2" href="#">View Pending Reimbursement History</a></li><br>
+                        <li> <a id="demo3" href="#">View Rejected Reimbursement History</a></li>
         </ul>
          </div>
         <script>
-            //function viewHistory() {
-                  
-                  // Create anchor element.
-                 // var a = document.createElement('a'); 
-                    
-                  // Create the text node for anchor element.
-                 // var link = document.createTextNode("View Reimbursement History by js");
-                    
-                  // Append the text node to anchor element.
-                 // a.appendChild(link); 
-                    
-                  // Set the title.
-                 // a.title = "This is Link"; 
+            
                  var id = window.location.search;
-                 
-                  // Set the href property.
+               	//ers history
                   var link=document.getElementById("demo");
                   link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1);
-                 // a.href = "login.html"; 
-                    
-                  // Append the anchor element to the body.
-                 // document.body.prepend(a); 
-            //  }
+                  //ers approved list
+                  var link=document.getElementById("demo1");
+                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1)+"&status=approved";
+                  //ers pending list
+                  var link=document.getElementById("demo2");
+                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1)+"&status=pending";
+                  //ers rejected list
+                  var link=document.getElementById("demo3");
+                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1)+"&status=rejected";
+                 
         </script>
     </body>
 </html>

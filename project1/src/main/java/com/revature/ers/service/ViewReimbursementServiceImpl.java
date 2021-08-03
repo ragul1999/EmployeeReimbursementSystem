@@ -19,4 +19,17 @@ public class ViewReimbursementServiceImpl implements ViewReimbursementService {
 		}
 		return result;
 	}
+	
+	
+	public List<Reimbursement> viewReimbursementHistoryOfEmpByStatus(Reimbursement reimburse){
+		List<Reimbursement> result=null;
+		try {
+			ViewReimbursementDao daoImpl=new ViewReimbursementDaoImpl();
+			result=daoImpl.viewReimbursementHistoryOfEmpByStatus(reimburse);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
