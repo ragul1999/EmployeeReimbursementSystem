@@ -15,6 +15,7 @@ public class DisplayReimbursementManagerServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+		String managerId=request.getParameter("managerId");
 		PrintWriter out=response.getWriter();
 		/* displaying expense reimbursement list starts*/
 		ArrayList<Reimbursement> viewList=(ArrayList<Reimbursement>)request.getSession().getAttribute("reimburseList");
@@ -25,9 +26,9 @@ public class DisplayReimbursementManagerServlet extends HttpServlet {
 				+ "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n"
 				+ "    <style>\r\n"
 				+ "        .container{\r\n"
-				+ "        margin-left: 10%;\r\n"
-				+ "        margin-right:10%;\r\n"
-				+ "        width: 80%;\r\n"
+				+ "        margin-left: 5%;\r\n"
+				+ "        margin-right:5%;\r\n"
+				+ "        width: 90%;\r\n"
 				+ "        display: inline-block;\r\n"
 				+ "            \r\n"
 				+ "        }\r\n"
@@ -71,18 +72,25 @@ public class DisplayReimbursementManagerServlet extends HttpServlet {
 				+ "          <th>Status</th>\r\n"
 				+ "          <th>Manager Id</th>\r\n"
 				+ "          <th>Updated on</th>\r\n"
-				+ "        </tr>";
+				+ "          <th>Action</th></tr>\r\n";
 		
 		
 		for(Reimbursement list:viewList) {
+			
 			resultPage+="<tr><td>"+list.getReimburseId()+"</td><td>"
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
 					+"</td><td>"+list.getDescription()+"</td><td>"+list.getDateOfApplied()+"</td><td>"
-					+list.getStatus()+"</td><td>"+list.getManagerId()+"</td><td>"+list.getUpdatedOn()+"</td></tr>";
+					+list.getStatus()+"</td><td>"+list.getManagerId()+"</td><td>"+list.getUpdatedOn()+"</td>";
+			
+			if("pending".equals(list.getStatus())){
+				resultPage+="<td><a href='http://localhost:8080/controller/ManagerReimbursementUpdateServlet?status=approved&managerId="+managerId+"&reimburseId="+list.getReimburseId() +"'>Approve \r\n"
+						+ "</a><span> or </span><a href='http://localhost:8080/controller/ManagerReimbursementUpdateServlet?status=rejected&managerId="+managerId+"&reimburseId="+list.getReimburseId() +"'> \r\n"
+						+ "Reject</a></td>";
+			}
 			
 		}
-		resultPage+=" </table>\r\n"
+		resultPage+="</tr> </table>\r\n"
 				+ "    </div>\r\n"
 				+ "</body>\r\n"
 				+ "</html>";

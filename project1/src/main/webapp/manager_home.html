@@ -41,17 +41,19 @@
  				var id = window.location.search;
                	//ers history
                   var link=document.getElementById("demo");
-                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet";
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?managerId="+id.substring(4);
                   //ers approved list
                   var link=document.getElementById("demo1");
-                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=approved";
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=approved&managerId="+id.substring(4);
                   //ers pending list
                   var link=document.getElementById("demo2");
-                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=pending";
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=pending&managerId="+id.substring(4);
                   //ers rejected list
                   var link=document.getElementById("demo3");
-                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=rejected";
-                 
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=rejected&managerId="+id.substring(4);
+                  //var link=document.getElementById("demo5");
+                  //link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?empId=";
+                  
         </script>
  
       

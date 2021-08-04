@@ -2,6 +2,7 @@ package com.revature.ers.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -19,22 +20,33 @@ public class ManagerReimbursementViewServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out=response.getWriter();
 		String status=request.getParameter("status");
+		String managerId=request.getParameter("managerId");
+		String empId=request.getParameter("empId");
 		
 		Reimbursement reimburse=new Reimbursement();
-		reimburse.setStatus(status);
-		
+		List<Reimbursement> viewList=new ArrayList<Reimbursement>();
 		ManagerViewReimbursementService serviceImpl=new ManagerViewReimbursementServiceImpl();
+		
 		if(status == null || status.isEmpty()) {
-			List<Reimbursement> viewList=serviceImpl.managerViewReimbursement();
+			viewList=serviceImpl.managerViewReimbursement();
 			request.getSession().setAttribute("reimburseList",viewList);
+			response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementManagerServlet?managerId="+managerId);
+		}
+		else if(empId !=null && !empId.isEmpty() ) {
+			reimburse.setEmployeeId(Integer.parseInt(empId));
+			ViewReimbursementService impl=new ViewReimbursementServiceImpl();
+			 viewList=impl.viewReimbursementHistoryByEmpId(reimburse);
+			request.getSession().setAttribute("employeeList",viewList);
+			response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementServlet");
 		}
 		
 		else {
 			reimburse.setStatus(status);
-			List<Reimbursement> viewList=serviceImpl.managerViewReimbursementByStatus(reimburse);
+			viewList=serviceImpl.managerViewReimbursementByStatus(reimburse);
 			request.getSession().setAttribute("reimburseList",viewList);
+			response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementManagerServlet?managerId="+managerId);
+			
 		}
 		
 		
@@ -45,7 +57,6 @@ public class ManagerReimbursementViewServlet extends HttpServlet {
 		//ArrayList<String> list=(ArrayList<List>)request.getSession().getAttribute("name");
 	
 		
-		response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementManagerServlet");
 	}
 
 		

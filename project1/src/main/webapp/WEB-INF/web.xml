@@ -46,6 +46,12 @@
   	<description></description>
   	<servlet-class>com.revature.ers.controller.DisplayReimbursementManagerServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ManagerReimbursementUpdateServlet</servlet-name>
+  	<display-name>ManagerReimbursementUpdateServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.controller.ManagerReimbursementUpdateServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRegistrationServlet</servlet-name>
   	<url-pattern>/EmployeeRegistrationServlet</url-pattern>
@@ -73,5 +79,9 @@
   <servlet-mapping>
   	<servlet-name>DisplayReimbursementManagerServlet</servlet-name>
   	<url-pattern>/DisplayReimbursementManagerServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ManagerReimbursementUpdateServlet</servlet-name>
+  	<url-pattern>/ManagerReimbursementUpdateServlet</url-pattern>
   </servlet-mapping>
 </web-app>

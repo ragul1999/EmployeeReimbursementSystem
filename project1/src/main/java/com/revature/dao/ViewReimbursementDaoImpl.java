@@ -33,6 +33,8 @@ public class ViewReimbursementDaoImpl implements ViewReimbursementDao {
 						reimburse.setDescription(rst.getString(6));
 						reimburse.setDateOfApplied(rst.getString(7));
 						reimburse.setStatus(rst.getString(8));
+						reimburse.setManagerId(rst.getInt(9));
+						reimburse.setUpdatedOn(rst.getString(10));
 						viewList.add(reimburse);
 						
 					}
