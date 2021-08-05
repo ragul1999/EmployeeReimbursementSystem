@@ -81,7 +81,7 @@ public class DisplayReimbursementManagerServlet extends HttpServlet {
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
 					+"</td><td>"+list.getDescription()+"</td><td>"+list.getDateOfApplied()+"</td><td>"
-					+list.getStatus()+"</td><td>"+list.getManagerId()+"</td><td>"+list.getUpdatedOn()+"</td>";
+					+list.getStatus()+"</td><td>"+(list.getManagerId()==-1?"":list.getManagerId())+"</td><td>"+list.getUpdatedOn()+"</td>";
 			
 			if("pending".equals(list.getStatus())){
 				resultPage+="<td><a href='http://localhost:8080/controller/ManagerReimbursementUpdateServlet?status=approved&managerId="+managerId+"&reimburseId="+list.getReimburseId() +"'>Approve \r\n"

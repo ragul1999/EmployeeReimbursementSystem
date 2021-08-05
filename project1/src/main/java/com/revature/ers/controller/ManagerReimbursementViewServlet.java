@@ -28,22 +28,27 @@ public class ManagerReimbursementViewServlet extends HttpServlet {
 		List<Reimbursement> viewList=new ArrayList<Reimbursement>();
 		ManagerViewReimbursementService serviceImpl=new ManagerViewReimbursementServiceImpl();
 		
-		if(status == null || status.isEmpty()) {
-			viewList=serviceImpl.managerViewReimbursement();
+		//view all reimbursement history part
+		if(status != null ) {
+			reimburse.setStatus(status);
+			viewList=serviceImpl.managerViewReimbursementByStatus(reimburse);
 			request.getSession().setAttribute("reimburseList",viewList);
 			response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementManagerServlet?managerId="+managerId);
+			
+			
+			
 		}
+		//view reimbursement history by employee id part
 		else if(empId !=null && !empId.isEmpty() ) {
 			reimburse.setEmployeeId(Integer.parseInt(empId));
 			ViewReimbursementService impl=new ViewReimbursementServiceImpl();
 			 viewList=impl.viewReimbursementHistoryByEmpId(reimburse);
-			request.getSession().setAttribute("employeeList",viewList);
-			response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementServlet");
+			request.getSession().setAttribute("reimburseList",viewList);
+			response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementManagerServlet?empId="+empId);
 		}
-		
+		//view reimbursement history by status part
 		else {
-			reimburse.setStatus(status);
-			viewList=serviceImpl.managerViewReimbursementByStatus(reimburse);
+			viewList=serviceImpl.managerViewReimbursement();
 			request.getSession().setAttribute("reimburseList",viewList);
 			response.sendRedirect("http://localhost:8080/controller/DisplayReimbursementManagerServlet?managerId="+managerId);
 			

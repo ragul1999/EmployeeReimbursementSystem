@@ -33,7 +33,7 @@
         </tr>
         <tr>
             <td>View all expense reimbursement list by employeeId</td>
-            <td><a id="demo5" href="#">Click here</a></td>
+            <td><a id="demo5" href="#" onclick="optionOver()">Click here</a></td>
         </tr>
      </table>
     </div>  
@@ -51,10 +51,34 @@
                   //ers rejected list
                   var link=document.getElementById("demo3");
                   link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=rejected&managerId="+id.substring(4);
-                  //var link=document.getElementById("demo5");
-                  //link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?empId=";
+                 
+                  function optionOver(){
+                      var form = document.createElement("form");
+                      form.setAttribute("method", "get");
+                      form.setAttribute("action", "http://localhost:8080/controller/ManagerReimbursementViewServlet?empId=");
+                      var empId = document.createElement("input");
+                      empId.setAttribute("type", "text");
+                      empId.setAttribute("name", "empId");
+                      empId.setAttribute("placeholder", "Enter employee id");
+                      var button = document.createElement("input");
+                      button.setAttribute("type", "submit");
+                      button.setAttribute("value", "Submit");
+                      
+                      empId.style.padding="14px 20px";
+                      empId.style.margin="8px 0";
+                      button.style.color="white";
+                      button.style.backgroundColor="#04AA6D";
+                      button.style.padding="16px 20px";
+                      button.style.margin="8px 0";
+                      button.style.border="none";
+                      button.style.cursor="pointer";
+                      button.style.width="15%";
+                      form.appendChild(empId);
+                      form.appendChild(button); 
+                  document.getElementsByClassName("container")[0].appendChild(form);
                   
-        </script>
+                     }  
+                  </script>
  
       
 </body>
