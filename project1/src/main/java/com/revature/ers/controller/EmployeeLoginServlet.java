@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.revature.ers.bo.ValidateEmployee;
 import com.revature.ers.model.Employee;
+import com.revature.ers.model.Manager;
 
 public class EmployeeLoginServlet extends HttpServlet {
 	
@@ -20,24 +21,35 @@ public class EmployeeLoginServlet extends HttpServlet {
 		String pwd=request.getParameter("pwd");
 		String type=request.getParameter("type");
 		
-		Employee employee=new Employee();
-		employee.setEmployeeId(Integer.parseInt(id));
-		employee.setPassword(pwd);
-		employee.setType(type);
+		
 		ValidateEmployee val=new ValidateEmployee();//to check employee is a valid entry
 		try {
-		if(val.checkEmployee(employee) && "E".equals(type)) {//select only employee
-			String link="http://localhost:8080/controller/add_reimbursement.html?id="+id;
-			response.sendRedirect(link);
-		}
-		else if(val.checkEmployee(employee) && "M".equals(type)) {//select only manager
-			String link="http://localhost:8080/controller/manager_home.html?id="+id;
-			response.sendRedirect(link);
-		}
-		else {
-			out.println("<h3 style='color:red; text-align=center;'>Login details are incorrect</h3>");
-		}
-		
+			if("E".equals(type)) {
+				Employee employee=new Employee();
+				employee.setEmployeeId(Integer.parseInt(id));
+				employee.setPassword(pwd);
+				if(val.checkEmployee(employee)) {
+					String link="http://localhost:8080/controller/add_reimbursement.html?id="+id;
+					response.sendRedirect(link);
+				}
+				else {
+					out.println("<h3 style='color:red; text-align=center;'>Login details are incorrect</h3>");
+				}
+			}
+			else {
+				Manager manager=new Manager();
+				manager.setManagerId(Integer.parseInt(id));
+				manager.setPassword(pwd);
+				if(val.checkManager(manager)){
+					String link="http://localhost:8080/controller/manager_home.html?id="+id;
+					response.sendRedirect(link);
+				}
+				else {
+					out.println("<h3 style='color:red; text-align=center;'>Login details are incorrect</h3>");
+				}
+			}
+			
+			
 		}
 		catch(Exception e) {
 			e.printStackTrace();

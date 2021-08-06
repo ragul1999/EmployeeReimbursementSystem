@@ -5,6 +5,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.revature.ers.model.PendingReimbursement;
 import com.revature.ers.model.Reimbursement;
 import com.revature.ers.service.EmployeeReimbursementService;
 import com.revature.ers.service.EmployeeReimbursementServiceImpl;
@@ -17,8 +19,7 @@ public class EmployeeReimbursement extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				response.setContentType("text/html");
 				PrintWriter out=response.getWriter();
-			out.println("success");
-				String id=request.getParameter("id");
+				String employeeId=request.getParameter("id");
 				String reimburseType=request.getParameter("reimburse-type");
 				String daysSpent=request.getParameter("days-spent");
 				String amount=request.getParameter("reimburse-amount");
@@ -26,16 +27,19 @@ public class EmployeeReimbursement extends HttpServlet {
 				
 				
 				Reimbursement reimburse=new Reimbursement();
-				reimburse.setEmployeeId(Integer.parseInt(id));
-				reimburse.setReimburseType(reimburseType);
-				reimburse.setDaysSpent(Integer.parseInt(daysSpent));
-				reimburse.setReimburseAmount(Integer.parseInt(amount));
-				reimburse.setDescription(description);
+				PendingReimbursement pendingReimburse=new PendingReimbursement();
+				reimburse.setEmployeeId(Integer.parseInt(employeeId));
+				
+				pendingReimburse.setEmployeeId(Integer.parseInt(employeeId));
+				pendingReimburse.setReimburseType(reimburseType);
+				pendingReimburse.setDaysSpent(Integer.parseInt(daysSpent));
+				pendingReimburse.setReimburseAmount(Integer.parseInt(amount));
+				pendingReimburse.setDescription(description);
 				
 				EmployeeReimbursementService impl=new EmployeeReimbursementServiceImpl();
-				impl.addReimbursement(reimburse);
+				impl.addReimbursement(reimburse,pendingReimburse);
 				
-				String link="http://localhost:8080/controller/add_reimbursement.html?id="+id;
+				String link="http://localhost:8080/controller/add_reimbursement.html?id="+employeeId;
 				response.sendRedirect(link);  
 				
 				

@@ -2,8 +2,8 @@ package com.revature.ers.service;
 
 import java.util.List;
 
-import com.revature.dao.ViewReimbursementDao;
-import com.revature.dao.ViewReimbursementDaoImpl;
+import com.revature.ers.dao.ViewReimbursementDao;
+import com.revature.ers.dao.ViewReimbursementDaoImpl;
 import com.revature.ers.model.Reimbursement;
 
 public class ViewReimbursementServiceImpl implements ViewReimbursementService {

@@ -1,23 +1,47 @@
 package com.revature.ers.bo;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import org.hibernate.Session;
 
-import com.revature.ers.db.DBUtil;
+import com.revature.ers.db.HibernateUtil;
 import com.revature.ers.model.Employee;
+import com.revature.ers.model.Manager;
+import com.revature.ers.util.EmployeeEntity;
+import com.revature.ers.util.ManagerEntity;
 
 public class ValidateEmployee {
 	public boolean checkEmployee(Employee e) throws Exception {
 		boolean result=false;
-		Connection con=DBUtil.getConnection();
-		PreparedStatement pst=con.prepareStatement("select * from ers_employeetable where id=? and (password=? and type=?)");
-		pst.setInt(1,e.getEmployeeId());
-		pst.setString(2,e.getPassword());
-		pst.setString(3,e.getType());
-		ResultSet rst=pst.executeQuery();
-		if(rst.next())
-			result=true;
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+			EmployeeEntity query=session.get(EmployeeEntity.class,e.getEmployeeId());
+			if(query!=null && query.getEmployeeId()==e.getEmployeeId() && (query.getPassword()).equals(e.getPassword()))
+				result=true;
+			
+		}catch(Exception e1) {
+			e1.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	
+		return result;
+	}
+	
+	public boolean checkManager(Manager m) throws Exception {
+		boolean result=false;
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+			ManagerEntity query=session.get(ManagerEntity.class,m.getManagerId());
+			if(query!=null && query.getManagerId()==m.getManagerId() && (query.getPassword()).equals(m.getPassword()))
+				result=true;
+			
+		}catch(Exception e1) {
+			e1.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	
 		return result;
 	}
 }

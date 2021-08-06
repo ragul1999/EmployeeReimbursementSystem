@@ -1,7 +1,7 @@
 package com.revature.ers.service;
 
-import com.revature.dao.ManagerReimbursementUpdateDao;
-import com.revature.dao.ManagerReimbursementUpdateDaoImpl;
+import com.revature.ers.dao.ManagerReimbursementUpdateDao;
+import com.revature.ers.dao.ManagerReimbursementUpdateDaoImpl;
 import com.revature.ers.model.Reimbursement;
 
 public class ManagerReimbursementUpdateServiceImpl implements ManagerReimbursementUpdateService {
