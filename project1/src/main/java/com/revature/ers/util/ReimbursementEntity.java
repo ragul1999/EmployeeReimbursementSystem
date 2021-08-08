@@ -1,6 +1,8 @@
 package com.revature.ers.util;
 
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +16,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ers_reimbursement_entity")
-public class ReimbursementEntity {
+public class ReimbursementEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="reimburse_id")
-	private Integer reimburseId=-1;
+	private Integer reimburseId;
 	@Column(name="employee_id")
 	private Integer employeeId;
 	
@@ -29,14 +31,19 @@ public class ReimbursementEntity {
 	
 	@OneToOne(cascade=CascadeType.ALL,targetEntity=ResolvedReimbursementEntity.class)
 	@JoinColumn(name="resolved_id")
-	private ResolvedReimbursementEntity resolvedId;
+	private ResolvedReimbursementEntity resolvedId; 
 	
 	@OneToOne(cascade=CascadeType.ALL,targetEntity=RejectedReimbursementEntity.class)
 	@JoinColumn(name="rejected_id")
 	private RejectedReimbursementEntity rejectedId;
 	
+
 	
-	
+	@Override
+	public String toString() {
+		return "ReimbursementEntity [reimburseId=" + reimburseId + ", employeeId=" + employeeId + ", pendingId="
+				+ pendingId + ", resolvedId=" + resolvedId + ", rejectedId=" + rejectedId + "]";
+	}
 	public PendingReimbursementEntity getPendingId() {
 		return pendingId;
 	}

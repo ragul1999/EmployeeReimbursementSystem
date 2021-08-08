@@ -1,5 +1,7 @@
 package com.revature.ers.util;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,9 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name="ers_pending_reimbursement_entity")
-public class PendingReimbursementEntity {
+public class PendingReimbursementEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -23,14 +26,18 @@ public class PendingReimbursementEntity {
 	private Integer daysSpent;
 	@Column(name="reimburse_amount")
 	private Integer reimburseAmount;
-	private String description;
+	private String description="";
 	@Column(name="added_on")
 	private String addedOn;
 	@Column(name="manager_id")
-	private Integer managerId;
+	private Integer managerId=-1;
 	@Column(name="updated_on")
-	private String updatedOn;
+	private String updatedOn="";
 	
+	
+	
+	
+
 	public Integer getPendingId() {
 		return pendingId;
 	}

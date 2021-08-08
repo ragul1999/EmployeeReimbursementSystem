@@ -2,6 +2,8 @@ package com.revature.ers.util;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,8 +12,9 @@ import javax.persistence.Table;
 public class RejectedReimbursementEntity {
 	
 		@Id
-		@Column(name="reimburse_id")
-		Integer reimburseId;
+		@GeneratedValue(strategy=GenerationType.AUTO)
+		@Column(name="rejected_id")
+		private Integer rejectedId;
 		@Column(name="employee_id")
 		Integer employeeId;
 		@Column(name="reimburse_type")
@@ -20,19 +23,28 @@ public class RejectedReimbursementEntity {
 		Integer daysSpent;
 		@Column(name="reimburse_amount")
 		Integer reimburseAmount;
-		String description;
+		String description="";
 		@Column(name="added_on")
 		String addedOn;
 		@Column(name="manager_id")
-		Integer managerId;
+		Integer managerId=-1;
 		@Column(name="updated_on")
-		String updatedOn;
+		String updatedOn="";
 		
-		public Integer getReimburseId() {
-			return reimburseId;
+		
+		
+		@Override
+		public String toString() {
+			return "RejectedReimbursementEntity [rejectedId=" + rejectedId + ", employeeId=" + employeeId
+					+ ", reimburseType=" + reimburseType + ", daysSpent=" + daysSpent + ", reimburseAmount="
+					+ reimburseAmount + ", description=" + description + ", addedOn=" + addedOn + ", managerId="
+					+ managerId + ", updatedOn=" + updatedOn + "]";
 		}
-		public void setReimburseId(Integer reimburseId) {
-			this.reimburseId = reimburseId;
+		public Integer getRejectedId() {
+			return rejectedId;
+		}
+		public void setRejectedId(Integer rejectedId) {
+			this.rejectedId = rejectedId;
 		}
 		public Integer getEmployeeId() {
 			return employeeId;

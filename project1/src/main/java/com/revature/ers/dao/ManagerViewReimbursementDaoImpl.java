@@ -1,104 +1,127 @@
 package com.revature.ers.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.ers.db.DBUtil;
+import org.hibernate.Query;
+import org.hibernate.Session;
+
+import com.revature.ers.db.HibernateUtil;
 import com.revature.ers.exceptions.ReimbursementNotFoundException;
+import com.revature.ers.model.Employee;
 import com.revature.ers.model.Reimbursement;
+import com.revature.ers.util.EmployeeEntity;
+import com.revature.ers.util.PendingReimbursementEntity;
+import com.revature.ers.util.RejectedReimbursementEntity;
+import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursementDao {
-
-//view ers history of all employees starts
-
-	@Override
-	public List<Reimbursement> managerViewReimbursement() {
-			List<Reimbursement> viewList=null;
-				try {
-					Connection con=DBUtil.getConnection();
-					PreparedStatement pst=con.prepareStatement("select * from ers_reimbursementtable");
-					ResultSet rst=pst.executeQuery();
-					if(rst.next()) {
-						viewList=new ArrayList<Reimbursement>();
-						rst=pst.executeQuery();
-						while(rst.next()) {
-							Reimbursement reimburse=new Reimbursement();
-							reimburse.setReimburseId(rst.getInt(1));
-						 	reimburse.setEmployeeId(rst.getInt(2));
-							reimburse.setReimburseType(rst.getString(3));
-							reimburse.setDaysSpent(rst.getInt(4));
-							reimburse.setReimburseAmount(rst.getInt(5));
-							reimburse.setDescription(rst.getString(6));
-							reimburse.setDateOfApplied(rst.getString(7));
-							reimburse.setStatus(rst.getString(8));
-							reimburse.setManagerId(rst.getInt(9));
-							reimburse.setUpdatedOn(rst.getString(10));
-							viewList.add(reimburse);
-							
-						}
-					
-				}
-					else {
-						throw new ReimbursementNotFoundException("Reimbursement history is empty..");
-					}
-				}
-				catch (Exception e1) {
-					
-					e1.printStackTrace();
-				}
-				 
-			 
-			
-			return viewList;
-		}
 	
-//view ers history of all employees ends
-	
-//view ers history of all employees by status starts	
+//view pending reimbursement starts	
 	@Override
-	public List<Reimbursement> managerViewReimbursementByStatus(Reimbursement reimburse){
-		List<Reimbursement> viewList=null;
+	public List<PendingReimbursementEntity> getPendingReimbursement(){
+		List<PendingReimbursementEntity> pendingList=null;
+		Session session=HibernateUtil.getSessionFactory().openSession();
 		try {
-			Connection con=DBUtil.getConnection();
-			PreparedStatement pst=con.prepareStatement("select * from ers_reimbursementtable where status=? ");
-			pst.setString(1,reimburse.getStatus());
-			ResultSet rst=pst.executeQuery();
-			if(rst.next()) {
-				viewList=new ArrayList<Reimbursement>();
-				rst=pst.executeQuery();
-				while(rst.next()) {
-					reimburse=new Reimbursement();
-					reimburse.setReimburseId(rst.getInt(1));
-				 	reimburse.setEmployeeId(rst.getInt(2));
-					reimburse.setReimburseType(rst.getString(3));
-					reimburse.setDaysSpent(rst.getInt(4));
-					reimburse.setReimburseAmount(rst.getInt(5));
-					reimburse.setDescription(rst.getString(6));
-					reimburse.setDateOfApplied(rst.getString(7));
-					reimburse.setStatus(rst.getString(8));
-					reimburse.setManagerId(rst.getInt(9));
-					reimburse.setUpdatedOn(rst.getString(10));
-					viewList.add(reimburse);
-					
-				}
+				
+				Query q=session.createQuery("from PendingReimbursementEntity e");
+				 pendingList=q.list();
+				 
 			
-		}
-			else {
-				throw new ReimbursementNotFoundException("Reimbursement history for the given status is empty..");
-			}
 		}
 		catch (Exception e1) {
 			
 			e1.printStackTrace();
 		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
 		 
-	 
-	
-	return viewList;
+	return pendingList;
 }
-//view ers history of all employees by status ends 
+//view pending reimbursement ends 
+
+//view rejected reimbursement starts
+	@Override
+	public List<RejectedReimbursementEntity> getRejectedReimbursement() {
+		List<RejectedReimbursementEntity> rejectedList=null;
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+				
+				Query q=session.createQuery("from RejectedReimbursementEntity r");
+				rejectedList=q.list();
+				 
+			
+		}
+		catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		 
+	return rejectedList;
+		
+		
+	}
+//view rejected reimbursement ends 
+	
+//view resolved reimbursement starts
+	@Override
+	public List<ResolvedReimbursementEntity> getResolvedReimbursement() {
+		List<ResolvedReimbursementEntity> resolvedList=null;
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+				
+				Query q=session.createQuery("from ResolvedReimbursementEntity e");
+				resolvedList=q.list();
+				 
+			
+		}
+		catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		 
+	return resolvedList;
+		
+		
+	}
+
+//view resolved reimbursement ends 
+	
+//View all employees starts
+	@Override
+	public List<EmployeeEntity> getAllEmployees() {
+		List<EmployeeEntity> employeeList=null;
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+				
+				Query q=session.createQuery("from EmployeeEntity e");
+				employeeList=q.list();
+		
+		}
+		catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+		finally {
+			if(session!=null)
+				session.close();
+		}
+		 
+	return employeeList;
+	}
+		
+	
+	
+//view all employees ends
 	
 }

@@ -5,6 +5,7 @@ import com.revature.ers.model.PendingReimbursement;
 public class PendingReimbursementMapper {
 	public static PendingReimbursementEntity mapModelEntity(PendingReimbursement model) {
 		PendingReimbursementEntity mapper=new PendingReimbursementEntity();
+		
 		mapper.setPendingId(model.getPendingId());
 		mapper.setEmployeeId(model.getEmployeeId());
 		mapper.setReimburseType(model.getReimburseType());

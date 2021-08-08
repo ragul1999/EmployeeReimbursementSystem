@@ -3,17 +3,58 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-
-     
+    <link rel="stylesheet" href="manager_home.css">
+    </head>
+    <body >
+       
+        <h1 id="head" style="color:red">Expense Reimbursement System- Employee Home page</h1>
+        <div class="container">
+       <p> <a  href="http://localhost:8080/controller/login.html"><span class="log-out-btn">Log Out</span></a></p>
+     <table id="customers">
+         <tr>
+             <td> Submit an Expense Reimbursement request </td>
+             <td><a id="demo" href="#">Click here</a></td>
+         </tr>
+         <tr>
+            <td>View/Update Employee information</td>
+            <td><a id="demo1" href="#">Click here</a></td>
+        </tr>
+        <tr>
+            <td>View Expense Reimbursement History</td>
+            <td><a id="demo2" href="#">Click here</a></td>
+        </tr>
+        <tr>
+            <td>View all approved Expense Reimbursement list</td>
+            <td><a id="demo3" href="#">Click here</a></td>
+        </tr>
+        <tr>
+            <td>View all pending Expense Reimbursement list</td>
+            <td><a id="demo4" href="#">Click here</a></td>
+        </tr>
+        <tr>
+            <td>View all rejected Expense Reimbursement list</td>
+            <td><a id="demo5" href="#">Click here</a></td>
+        </tr>
+     </table>
+    </div>  
+    <script>
+            
+        var id = window.location.search;
+          //ers history
+         var link=document.getElementById("demo");
+         link.href="http://localhost:8080/controller/add_reimbursement.html?id="+id.substring(4);
+         //ers approved list
+         var link=document.getElementById("demo1");
+         link.href="http://localhost:8080/controller/DisplayAllEmployeeServlet?empId="+id.substring(4);
+         //ers pending list
+         var link=document.getElementById("demo2");
+         link.href="http://localhost:8080/controller/DisplayReimbursementByEmployeeIdServlet?empId="+id.substring(4);
+         //ers rejected list
+         var link=document.getElementById("demo3");
+         link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(4)+"&status=rejected";
         
-
-
-
-
-
-
-
+</script>
+ 
       
 </body>
 

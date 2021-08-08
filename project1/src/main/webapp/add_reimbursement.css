@@ -102,22 +102,11 @@ form {
     background-color: lightgreen;
     color: white;
  }
- /* navigation links */
-   .navs{
-       
-        margin-top: 10px;
-        position: absolute;
-        left: 10px;
-        bottom:40%;
-        transition: 0.2s ease all;
-   }
-    
+ 
+   
     /* Change styles for span and cancel button on extra small screens */
     @media screen and (max-width: 300px) {
-    div.navs{
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
+   
     .cancelbtn,.submitbtn {
     width: 100%;
     }

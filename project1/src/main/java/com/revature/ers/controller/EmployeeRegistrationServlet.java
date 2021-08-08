@@ -27,7 +27,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 		String name=request.getParameter("name");
 		String department=request.getParameter("department");
 		String designation=request.getParameter("designation");
-		String email=request.getParameter("email");
+		String email=request.getParameter("email").toLowerCase();
 		String pwd=request.getParameter("pwd");
 		String type=request.getParameter("type");
 	

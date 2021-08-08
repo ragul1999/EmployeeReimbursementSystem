@@ -9,7 +9,7 @@
        
         <h1 id="head">Expense Reimbursement System- Manager Access page</h1>
         <div class="container">
-       <p> <a  href="http://localhost:8080/controller/signup.html"><span class="log-out-btn">Back to Home</span></a></p>
+       <p> <a  href="http://localhost:8080/controller/login.html"><span class="log-out-btn">Log Out</span></a></p>
      <table id="customers">
          <tr>
              <td>View all expense reimbursement list</td>
@@ -28,7 +28,7 @@
             <td><a id="demo3" href="#">Click here</a></td>
         </tr>
         <tr>
-            <td>View expense reimbursement list by reimburseId</td>
+            <td>View All Employees</td>
             <td><a id="demo4" href="#">Click here</a></td>
         </tr>
         <tr>
@@ -41,29 +41,36 @@
  				var id = window.location.search;
                	//ers history
                   var link=document.getElementById("demo");
-                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?managerId="+id.substring(4);
+                  link.href="http://localhost:8080/controller/DisplayAllReimbursementServlet?status=all&managerId="+id.substring(4);
                   //ers approved list
                   var link=document.getElementById("demo1");
-                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=approved&managerId="+id.substring(4);
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=resolved&managerId="+id.substring(4);
                   //ers pending list
                   var link=document.getElementById("demo2");
                   link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=pending&managerId="+id.substring(4);
                   //ers rejected list
                   var link=document.getElementById("demo3");
                   link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=rejected&managerId="+id.substring(4);
-                 
+                  var link=document.getElementById("demo4");
+                  link.href="http://localhost:8080/controller/ManagerReimbursementViewServlet?status=employees&managerId="+id.substring(4);
                   function optionOver(){
                       var form = document.createElement("form");
                       form.setAttribute("method", "get");
-                      form.setAttribute("action", "http://localhost:8080/controller/ManagerReimbursementViewServlet?empId=");
+                      form.setAttribute("action", "http://localhost:8080/controller/DisplayReimbursementByEmployeeIdServlet?empId=");
                       var empId = document.createElement("input");
                       empId.setAttribute("type", "text");
                       empId.setAttribute("name", "empId");
                       empId.setAttribute("placeholder", "Enter employee id");
+                      
+                      var managerId= document.createElement("input");
+                      managerId.setAttribute("type","text");
+                      managerId.setAttribute("name","managerId");
+                      managerId.value=id.substring(4);
+                      managerId.setAttribute("hidden", true); 
+                      
                       var button = document.createElement("input");
                       button.setAttribute("type", "submit");
                       button.setAttribute("value", "Submit");
-                      
                       empId.style.padding="14px 20px";
                       empId.style.margin="8px 0";
                       button.style.color="white";
@@ -73,6 +80,7 @@
                       button.style.border="none";
                       button.style.cursor="pointer";
                       button.style.width="15%";
+                      form.appendChild(managerId);
                       form.appendChild(empId);
                       form.appendChild(button); 
                   document.getElementsByClassName("container")[0].appendChild(form);

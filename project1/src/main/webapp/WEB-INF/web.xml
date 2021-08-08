@@ -23,16 +23,16 @@
   	<servlet-class>com.revature.ers.controller.EmployeeReimbursement</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>ViewReimbursementServlet</servlet-name>
-  	<display-name>ViewReimbursementServlet</display-name>
+  	<servlet-name>DisplayAllEmployeeServlet</servlet-name>
+  	<display-name>DisplayAllEmployeeServlet</display-name>
   	<description></description>
-  	<servlet-class>com.revature.ers.controller.ViewReimbursementServlet</servlet-class>
+  	<servlet-class>com.revature.ers.controller.DisplayAllEmployeeServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>DisplayReimbursementServlet</servlet-name>
-  	<display-name>DisplayReimbursementServlet</display-name>
+  	<servlet-name>DisplayReimbursementByEmployeeIdServlet</servlet-name>
+  	<display-name>DisplayReimbursementByEmployeeIdServlet</display-name>
   	<description></description>
-  	<servlet-class>com.revature.ers.controller.DisplayReimbursementServlet</servlet-class>
+  	<servlet-class>com.revature.ers.controller.DisplayReimbursementByEmployeeIdServlet</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>ManagerReimbursementViewServlet</servlet-name>
@@ -41,16 +41,34 @@
   	<servlet-class>com.revature.ers.controller.ManagerReimbursementViewServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>DisplayReimbursementManagerServlet</servlet-name>
-  	<display-name>DisplayReimbursementManagerServlet</display-name>
+  	<servlet-name>DisplayAllReimbursementServlet</servlet-name>
+  	<display-name>DisplayAllReimbursementServlet</display-name>
   	<description></description>
-  	<servlet-class>com.revature.ers.controller.DisplayReimbursementManagerServlet</servlet-class>
+  	<servlet-class>com.revature.ers.controller.DisplayAllReimbursementServlet</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>ManagerReimbursementUpdateServlet</servlet-name>
   	<display-name>ManagerReimbursementUpdateServlet</display-name>
   	<description></description>
   	<servlet-class>com.revature.ers.controller.ManagerReimbursementUpdateServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DisplayPendingReimbursementServlet</servlet-name>
+  	<display-name>DisplayPendingReimbursementServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.controller.DisplayPendingReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DisplayRejectedReimbursementServlet</servlet-name>
+  	<display-name>DisplayRejectedReimbursementServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.controller.DisplayRejectedReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DisplayResolvedReimbursementServlet</servlet-name>
+  	<display-name>DisplayResolvedReimbursementServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.controller.DisplayResolvedReimbursementServlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRegistrationServlet</servlet-name>
@@ -65,23 +83,35 @@
   	<url-pattern>/EmployeeReimbursement</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>ViewReimbursementServlet</servlet-name>
-  	<url-pattern>/ViewReimbursementServlet</url-pattern>
+  	<servlet-name>DisplayAllEmployeeServlet</servlet-name>
+  	<url-pattern>/DisplayAllEmployeeServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>DisplayReimbursementServlet</servlet-name>
-  	<url-pattern>/DisplayReimbursementServlet</url-pattern>
+  	<servlet-name>DisplayReimbursementByEmployeeIdServlet</servlet-name>
+  	<url-pattern>/DisplayReimbursementByEmployeeIdServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ManagerReimbursementViewServlet</servlet-name>
   	<url-pattern>/ManagerReimbursementViewServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>DisplayReimbursementManagerServlet</servlet-name>
-  	<url-pattern>/DisplayReimbursementManagerServlet</url-pattern>
+  	<servlet-name>DisplayAllReimbursementServlet</servlet-name>
+  	<url-pattern>/DisplayAllReimbursementServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ManagerReimbursementUpdateServlet</servlet-name>
   	<url-pattern>/ManagerReimbursementUpdateServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DisplayPendingReimbursementServlet</servlet-name>
+  	<url-pattern>/DisplayPendingReimbursementServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DisplayRejectedReimbursementServlet</servlet-name>
+  	<url-pattern>/DisplayRejectedReimbursementServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DisplayResolvedReimbursementServlet</servlet-name>
+  	<url-pattern>/DisplayResolvedReimbursementServlet</url-pattern>
   </servlet-mapping>
 </web-app>

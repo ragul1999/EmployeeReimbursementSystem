@@ -1,7 +1,10 @@
 package com.revature.ers.dao;
 
-import com.revature.ers.model.Reimbursement;
+import com.revature.ers.model.PendingReimbursement;
+
 
 public interface ManagerReimbursementUpdateDao {
-	public void updateReimbursement(Reimbursement reimburse);
+	
+	public void rejectReimbursement(PendingReimbursement pending);
+	public void approveReimbursement(PendingReimbursement pending);
 }

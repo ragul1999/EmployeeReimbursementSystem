@@ -1,7 +1,9 @@
 package com.revature.ers.service;
 
-import com.revature.ers.model.Reimbursement;
+import com.revature.ers.model.PendingReimbursement;
+
 
 public interface ManagerReimbursementUpdateService {
-	public void updateReimbursement(Reimbursement reimburse);
+	public void rejectReimbursement(PendingReimbursement reimburse);
+	public void approveReimbursement(PendingReimbursement approved);
 }

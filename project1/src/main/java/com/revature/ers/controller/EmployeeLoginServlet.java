@@ -29,7 +29,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 				employee.setEmployeeId(Integer.parseInt(id));
 				employee.setPassword(pwd);
 				if(val.checkEmployee(employee)) {
-					String link="http://localhost:8080/controller/add_reimbursement.html?id="+id;
+					String link="http://localhost:8080/controller/employee_home.html?id="+id;
 					response.sendRedirect(link);
 				}
 				else {

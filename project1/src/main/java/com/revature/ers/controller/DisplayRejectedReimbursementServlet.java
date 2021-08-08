@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.ers.model.Reimbursement;
+import com.revature.ers.util.RejectedReimbursementEntity;
 
-public class DisplayReimbursementManagerServlet extends HttpServlet {
+public class DisplayRejectedReimbursementServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		String managerId=request.getParameter("managerId");
 		PrintWriter out=response.getWriter();
-		/* displaying expense reimbursement list starts*/
-		ArrayList<Reimbursement> viewList=(ArrayList<Reimbursement>)request.getSession().getAttribute("reimburseList");
+		
+		ArrayList<RejectedReimbursementEntity> rejectedList=(ArrayList<RejectedReimbursementEntity>)request.getSession().getAttribute("rejectedList");
 		String resultPage="<!DOCTYPE html>\r\n"
 				+ "<html>\r\n"
 				+ "<head>\r\n"
@@ -58,36 +58,30 @@ public class DisplayReimbursementManagerServlet extends HttpServlet {
 				+ "        </style>\r\n"
 				+ "       \r\n"
 				+ "</head>\r\n"
-				+ "        <h2 style=\"color:#5890FF;text-align: center;\">Expense Reimbursement History</h2>\r\n"
-				+ "        <div class=\"container\">\r\n"
+				+ "        <h2 style=\"color:#5890FF;text-align: center;\">Rejected Expense Reimbursement History</h2>\r\n"
+				+ "        <div class=\"container\"><a href=\""+"http://localhost:8080/controller/manager_home.html?id="+managerId+"\">Back to Home</a><br><br>\r\n"
 				+ "    <table id=\"customers\">\r\n"
 				+ "        <tr>\r\n"
-				+ "          <th>Reimbursement ID</th>\r\n"
-				+ "          <th>Employee ID</th>\r\n"
+				+ "          <th>Rejected Id</th>\r\n"
+				+ "          <th>Employee Id</th>\r\n"
 				+ "          <th>Type</th>\r\n"
 				+ "          <th>Days spent</th>\r\n"
 				+ "          <th>Amount</th>\r\n"
 				+ "          <th>Description</th>\r\n"
 				+ "          <th>Date of applied</th>\r\n"
-				+ "          <th>Status</th>\r\n"
 				+ "          <th>Manager Id</th>\r\n"
-				+ "          <th>Updated on</th>\r\n"
-				+ "          <th>Action</th></tr>\r\n";
+				+ "          <th>Updated on</th>\r\n";
+				
 		
 		
-		for(Reimbursement list:viewList) {
+		for(RejectedReimbursementEntity list:rejectedList) {
 			
-			resultPage+="<tr><td>"+list.getReimburseId()+"</td><td>"
+			resultPage+="<tr><td>"+list.getRejectedId()+"</td><td>"
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
-					+"</td><td>"+list.getDescription()+"</td><td>"+list.getDateOfApplied()+"</td><td>"
-					+list.getStatus()+"</td><td>"+(list.getManagerId()==-1?"":list.getManagerId())+"</td><td>"+list.getUpdatedOn()+"</td>";
-			
-			if("pending".equals(list.getStatus())){
-				resultPage+="<td><a href='http://localhost:8080/controller/ManagerReimbursementUpdateServlet?status=approved&managerId="+managerId+"&reimburseId="+list.getReimburseId() +"'>Approve \r\n"
-						+ "</a><span> or </span><a href='http://localhost:8080/controller/ManagerReimbursementUpdateServlet?status=rejected&managerId="+managerId+"&reimburseId="+list.getReimburseId() +"'> \r\n"
-						+ "Reject</a></td>";
-			}
+					+"</td><td>"+list.getDescription()+"</td><td>"+list.getAddedOn()+"</td><td>"
+					+(list.getManagerId()==-1?"":list.getManagerId())+"</td><td>"+list.getUpdatedOn()+"</td>";
+					
 			
 		}
 		resultPage+="</tr> </table>\r\n"
@@ -95,8 +89,9 @@ public class DisplayReimbursementManagerServlet extends HttpServlet {
 				+ "</body>\r\n"
 				+ "</html>";
 		out.println(resultPage);
-		/* displaying expense reimbursement list ends*/
+		
 	
+		
 	}
 
 }

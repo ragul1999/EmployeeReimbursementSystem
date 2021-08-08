@@ -1,21 +1,29 @@
 package com.revature.ers.model;
 
-public class PendingReimbursement {
-	Integer pendingId;
-	Integer employeeId;
-	String reimburseType;
-	Integer daysSpent;
-	Integer reimburseAmount;
-	String description;
-	String addedOn;
-	Integer managerId;//default, to notify that manager doesn't update/modify a particular reimbursement request
-	String updatedOn;//default
+public class PendingReimbursement extends Reimbursement{
+	private Integer pendingId;
+	private Integer reimburseId;
+	private Integer employeeId;
+	private String reimburseType;
+	private Integer daysSpent;
+	private Integer reimburseAmount;
+	private String description="";
+	private String addedOn;
+	private Integer managerId=-1;//default, to notify that manager doesn't update/modify a particular reimbursement request
+	private String updatedOn="";//default
 	
 	public Integer getPendingId() {
 		return pendingId;
 	}
 	public void setPendingId(Integer pendingId) {
 		this.pendingId = pendingId;
+	}
+	
+	public Integer getReimburseId() {
+		return reimburseId;
+	}
+	public void setReimburseId(Integer reimburseId) {
+		this.reimburseId = reimburseId;
 	}
 	public Integer getEmployeeId() {
 		return employeeId;

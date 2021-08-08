@@ -9,7 +9,8 @@
     <body>
        
    <form action="http://localhost:8080/controller/EmployeeReimbursement" method="get" autocomplete="off">
-           <a href="http://localhost:8080/controller/signup.html"><span class="log-out-btn">Log out</span></a>
+   		<a id="demo" href="#" style="display:inline-block;padding-top:10px;padding-left:10px">Back to Home page</a>
+           <a href="http://localhost:8080/controller/login.html"><span class="log-out-btn">Log out</span></a>
 
            <div class="container" >
              <div style="text-align: center;">
@@ -22,11 +23,11 @@
          <label for="type" ><b>Reimbursement Type</b></label>
           <select name="reimburse-type" id="type" type="text"  required>
             <option type="text" value="none" selected disabled hidden>Choose type</option>
-            <option type="text" value="food" >Food</option>
-                <option type="text" value="medical-expense">Medical Expense</option>
-                <option type="text" value="travel">Travel</option>
-                <option type="text" value="lodging">Lodging</option>
-                <option type="text" value="others">Others</option>
+            <option type="text" value="Food" >Food</option>
+                <option type="text" value="Medical Expense">Medical Expense</option>
+                <option type="text" value="Travel">Travel</option>
+                <option type="text" value="Lodging">Lodging</option>
+                <option type="text" value="Others">Others</option>
              </select>
              <label for="days-spent"  ><b>Number of days spent</b></label>
              <input type="number" min="1" placeholder="Enter days spent" name="days-spent" required>
@@ -43,30 +44,10 @@
             </div>
            
           </form>
-          <div class="navs">
-              <ul>
-                <li>  <a id="demo" href="#">View Reimbursement History</a></li><br>
-                <li> <a id="demo1" href="#">View Approved Reimbursement List</a></li><br>
-                    <li> <a id="demo2" href="#">View Pending Reimbursement History</a></li><br>
-                        <li> <a id="demo3" href="#">View Rejected Reimbursement History</a></li>
-        </ul>
-         </div>
-        <script>
-            
-                 var id = window.location.search;
-               	//ers history
-                  var link=document.getElementById("demo");
-                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1);
-                  //ers approved list
-                  var link=document.getElementById("demo1");
-                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1)+"&status=approved";
-                  //ers pending list
-                  var link=document.getElementById("demo2");
-                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1)+"&status=pending";
-                  //ers rejected list
-                  var link=document.getElementById("demo3");
-                  link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(1)+"&status=rejected";
-                 
-        </script>
+         <script>
+        	 var id = window.location.search;
+         	document.getElementById("demo").href="http://localhost:8080/controller/employee_home.html"+id;
+         </script>
+        
     </body>
 </html>

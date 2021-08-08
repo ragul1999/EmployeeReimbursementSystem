@@ -5,9 +5,10 @@ import com.revature.ers.model.RejectedReimbursement;
 public class RejectedReimbursementMapper {
 	public static RejectedReimbursementEntity mapModelEntity(RejectedReimbursement model) {
 		RejectedReimbursementEntity mapper=new RejectedReimbursementEntity();
-		mapper.setReimburseId(model.getReimburseId());
+		mapper.setRejectedId(model.getRejectedId());
 		mapper.setEmployeeId(model.getEmployeeId());
 		mapper.setDaysSpent(model.getDaysSpent());
+		mapper.setReimburseType(model.getReimburseType());
 		mapper.setReimburseAmount(model.getReimburseAmount());
 		mapper.setDescription(model.getDescription());
 		mapper.setAddedOn(model.getAddedOn());
@@ -15,5 +16,5 @@ public class RejectedReimbursementMapper {
 		mapper.setUpdatedOn(model.getUpdatedOn());
 		return mapper;
 
-}
+	}
 }

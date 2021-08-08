@@ -1,20 +1,23 @@
 package com.revature.ers.model;
 
 public class RejectedReimbursement {
-	Integer reimburseId;
-	Integer employeeId;
-	String reimburseType;
-	Integer daysSpent;
-	Integer reimburseAmount;
-	String description;
-	String addedOn;
-	Integer managerId;
-	String updatedOn;
-	public Integer getReimburseId() {
-		return reimburseId;
+	
+	private Integer rejectedId;
+	private Integer employeeId;
+	private String reimburseType;
+	private Integer daysSpent;
+	private Integer reimburseAmount;
+	private String description="";
+	private String addedOn;
+	private Integer managerId=-1;
+	private String updatedOn="";
+	
+	
+	public Integer getRejectedId() {
+		return rejectedId;
 	}
-	public void setReimburseId(Integer reimburseId) {
-		this.reimburseId = reimburseId;
+	public void setRejectedId(Integer rejectedId) {
+		this.rejectedId = rejectedId;
 	}
 	public Integer getEmployeeId() {
 		return employeeId;
