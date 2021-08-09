@@ -7,7 +7,6 @@ import org.hibernate.Session;
 
 import com.revature.ers.db.HibernateUtil;
 import com.revature.ers.model.Reimbursement;
-import com.revature.ers.model.ReimbursementEmployee;
 import com.revature.ers.util.PendingReimbursementEntity;
 import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
@@ -83,21 +82,6 @@ public class ViewReimbursementByEmployeeIdDaoImpl implements ViewReimbursementBy
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-	@Override
-	public List<ReimbursementEmployee> getReimbursementByEmpIdAndStatus(Reimbursement reimburse) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 }

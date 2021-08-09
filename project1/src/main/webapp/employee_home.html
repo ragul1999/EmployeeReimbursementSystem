@@ -51,7 +51,11 @@
          link.href="http://localhost:8080/controller/DisplayReimbursementByEmployeeIdServlet?empId="+id.substring(4);
          //ers rejected list
          var link=document.getElementById("demo3");
-         link.href="http://localhost:8080/controller/ViewReimbursementServlet?"+id.substring(4)+"&status=rejected";
+         link.href="http://localhost:8080/controller/DisplayReimbursementEmployeeViewByStatusServlet?empId="+id.substring(4)+"&status=resolved";
+         var link=document.getElementById("demo4");
+         link.href="http://localhost:8080/controller/DisplayReimbursementEmployeeViewByStatusServlet?empId="+id.substring(4)+"&status=pending";
+         var link=document.getElementById("demo5");
+         link.href="http://localhost:8080/controller/DisplayReimbursementEmployeeViewByStatusServlet?empId="+id.substring(4)+"&status=rejected";
         
 </script>
  

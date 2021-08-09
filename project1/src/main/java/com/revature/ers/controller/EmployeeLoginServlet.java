@@ -17,6 +17,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
+		out.println("success");
 		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");
 		String type=request.getParameter("type");
@@ -54,7 +55,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 		catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+	
 	}
 
 }

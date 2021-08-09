@@ -5,7 +5,6 @@ import java.util.List;
 import com.revature.ers.dao.ViewReimbursementByEmployeeIdDao;
 import com.revature.ers.dao.ViewReimbursementByEmployeeIdDaoImpl;
 import com.revature.ers.model.Reimbursement;
-import com.revature.ers.model.ReimbursementEmployee;
 import com.revature.ers.util.PendingReimbursementEntity;
 import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
@@ -59,18 +58,6 @@ public class ViewReimbursementServiceImpl implements ViewReimbursementService {
 
 	
 	
-	public List<ReimbursementEmployee> getReimbursementByEmpIdAndStatus(Reimbursement reimburse){
-		List<ReimbursementEmployee> result=null;
-		try {
-			ViewReimbursementByEmployeeIdDao daoImpl=new ViewReimbursementByEmployeeIdDaoImpl();
-			result=daoImpl.getReimbursementByEmpIdAndStatus(reimburse);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-
 
 
 
