@@ -24,7 +24,6 @@ public class DisplayAllEmployeeServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String managerId=request.getParameter("managerId");
 		String empId=request.getParameter("empId");
-		//String status=request.getParameter("status");
 		List<EmployeeEntity> employeeList=null;
 		
 		if(managerId==null && empId!=null) {

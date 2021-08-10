@@ -82,6 +82,12 @@
   	<description></description>
   	<servlet-class>com.revature.ers.controller.EmployeeUpdateDetailsServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>EmployeeDetailsUpdateServlet</servlet-name>
+  	<display-name>EmployeeDetailsUpdateServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.revature.ers.controller.EmployeeDetailsUpdateServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>EmployeeRegistrationServlet</servlet-name>
   	<url-pattern>/EmployeeRegistrationServlet</url-pattern>
@@ -133,5 +139,9 @@
   <servlet-mapping>
   	<servlet-name>EmployeeUpdateDetailsServlet</servlet-name>
   	<url-pattern>/EmployeeUpdateDetailsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EmployeeDetailsUpdateServlet</servlet-name>
+  	<url-pattern>/EmployeeDetailsUpdateServlet</url-pattern>
   </servlet-mapping>
 </web-app>
