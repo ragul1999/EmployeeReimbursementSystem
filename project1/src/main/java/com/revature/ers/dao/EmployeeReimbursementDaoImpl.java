@@ -1,6 +1,8 @@
 package com.revature.ers.dao;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.hibernate.Session;
 import com.revature.ers.db.HibernateUtil;
 import com.revature.ers.model.PendingReimbursement;
@@ -11,7 +13,9 @@ import com.revature.ers.util.ReimbursementEntity;
 import com.revature.ers.util.ReimbursementMapper;
 
 public class EmployeeReimbursementDaoImpl implements EmployeeReimbursementDao{
-	final LocalDateTime localTime=LocalDateTime.now();
+	final LocalDateTime now=LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy KK:mm:ss a");
+    String localTime = now.format(formatter);
 	
 	public void addReimbursement(Reimbursement reimburse,PendingReimbursement pendingReimburse) {
 		Session session=HibernateUtil.getSessionFactory().openSession();

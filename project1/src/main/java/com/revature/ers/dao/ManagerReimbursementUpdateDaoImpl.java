@@ -1,6 +1,7 @@
 package com.revature.ers.dao;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -13,7 +14,9 @@ import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class ManagerReimbursementUpdateDaoImpl implements ManagerReimbursementUpdateDao {
-	final LocalDateTime localTime=LocalDateTime.now();
+	final LocalDateTime now=LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy KK:mm:ss a");
+    String localTime = now.format(formatter);
 	
 	@Override
 	public void rejectReimbursement(PendingReimbursement pending) {

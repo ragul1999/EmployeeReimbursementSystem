@@ -15,4 +15,9 @@ public class EmployeeRegistrationServiceImpl implements EmployeeRegistrationServ
 		 employeeDao.addManager(m);
 		 
 	 }
+	@Override
+	public void updateEmployee(Employee employee) {
+		 employeeDao.updateEmployee(employee);
+		
+	}
 }

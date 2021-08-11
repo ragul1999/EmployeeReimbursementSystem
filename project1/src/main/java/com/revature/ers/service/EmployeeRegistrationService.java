@@ -7,4 +7,5 @@ public interface EmployeeRegistrationService {
 
 	 public void addEmployee(Employee e);
 	public void addManager(Manager manager);
+	public void updateEmployee(Employee employee);
 }

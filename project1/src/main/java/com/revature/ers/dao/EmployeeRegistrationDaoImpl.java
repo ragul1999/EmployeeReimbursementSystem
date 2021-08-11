@@ -2,6 +2,7 @@ package com.revature.ers.dao;
 
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.hibernate.Session;
 
@@ -14,8 +15,10 @@ import com.revature.ers.util.ManagerEntity;
 import com.revature.ers.util.ManagerMapper;
 
 public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
-	final LocalDateTime localTime=LocalDateTime.now();
-	
+	final LocalDateTime now=LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy KK:mm:ss a");
+    String localTime = now.format(formatter);
+//add employee starts	
 	 public void addEmployee(Employee e) {
 		 e.setAddedOn(localTime.toString());
 		 e.setUpdatedOn("");
@@ -39,7 +42,9 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 		}
 		 
 	 }
+//add employee ends
 	 
+//add manager starts
 	 public void addManager(Manager m) {
 		 m.setAddedOn(localTime.toString());
 		 m.setUpdatedOn("");
@@ -62,6 +67,35 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 			}
 		}
 		 
-	 } 
+	 }
+//add manager ends
+
+//update employee starts
+	@Override
+	public void updateEmployee(Employee employee) {
+		
+		employee.setUpdatedOn(localTime.toString());
+		 
+		 Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+			
+			EmployeeEntity employeeEntity=EmployeeMapper.mapModelEntity(employee);
+			session.beginTransaction();
+			session.merge(employeeEntity);
+			session.flush();
+			session.getTransaction().commit();
+			
+		} catch (Exception e1) {
+			
+			e1.printStackTrace();
+		}
+		finally {
+			if(session!=null) {
+				session.close();
+			}
+		}
+		
+	} 
+//update employee ends
 	 
 }

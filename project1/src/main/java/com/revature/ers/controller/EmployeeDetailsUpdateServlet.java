@@ -28,13 +28,16 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 				EmployeeShowDetailsByEmpoyeeIdService empImpl=new EmployeeShowDetailsByEmpoyeeIdServiceImpl();
 				employeeList=empImpl.getEmployeeByEmployeeId(emp);
 			}
-			String empName="",dept="",desig="",email="";
+			String empName="",dept="",desig="",email="",pwd="",addedOn="";
 			
 			for(EmployeeEntity e:employeeList) {
 				empName=e.getEmployeeName();
 				dept=e.getDepartment();
 				desig=e.getDesignation();
 				email=e.getEmail();
+				pwd=e.getPassword();
+				addedOn=e.getAddedOn();
+				
 			}
 			
 			
@@ -148,7 +151,7 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 					+ "} \r\n"
 					+ "</style>\r\n"
 					+ "        <body>\r\n"
-					+ "            <form action=\"#\" style=\"border:1px solid #ccc\" autocomplete=\"off\" method=\"get\">\r\n"
+					+ "            <form action=\"http://localhost:8080/controller/EmployeeRegistrationServlet\" style=\"border:1px solid #ccc\" autocomplete=\"off\" method=\"post\">\r\n"
 					+ "                <div class=\"container\">\r\n"
 					+ "                 <a href=\"http://localhost:8080/controller/employee_home.html?id="+empId+"\">Back to Home</a>\r\n"
 					+ "                    <div style=\"text-align: center;\"> \r\n"
@@ -200,8 +203,9 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 					+ "                  </select><br>\r\n"
 					+ "                  <label for=\"email\"><b>Email</b></label>\r\n"
 					+ "                  <input type=\"email\" placeholder=\"Email\" name=\"email\" value=\""+email+"\" required>\r\n"
-					+ "              \r\n"
-					+ "                 \r\n"
+					+ "              <input type=\"hidden\" name=\"status\" value=\"update\">       \r\n"
+					+"     <input type=\"hidden\" name=\"pwd\" value=\""+pwd+"\">                      \r\n "
+					+ "     <input type=\"hidden\" name=\"addedOn\" value=\""+addedOn+"\">            \r\n"
 					+ "                  <div class=\"clearfix\">\r\n"
 					+ "                   \r\n"
 					+ "                  <button type=\"submit\" class=\"update-btn\"  >Update</button>\r\n"

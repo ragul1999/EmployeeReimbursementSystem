@@ -44,4 +44,42 @@ public class ValidateEmployee {
 	
 		return result;
 	}
+//used in registration to avoid employee duplicate key exception
+	public boolean isAlreadyExistEmployee(Employee e) throws Exception {
+		boolean result=false;
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+			EmployeeEntity query=session.get(EmployeeEntity.class,e.getEmployeeId());
+			if(query!=null && query.getEmployeeId()==e.getEmployeeId())
+				result=true;
+			
+		}catch(Exception e1) {
+			e1.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	
+		return result;
+	}
+	
+//used in registration to avoid manager duplicate key exception
+	public boolean isAlreadyExistManager(Manager m) throws Exception {
+		boolean result=false;
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		try {
+			ManagerEntity query=session.get(ManagerEntity.class,m.getManagerId());
+			if(query!=null && query.getManagerId()==m.getManagerId() )
+				result=true;
+			
+		}catch(Exception e1) {
+			e1.printStackTrace();
+		}finally {
+			if(session!=null)
+				session.close();
+		}
+	
+		return result;
+	}
+	
 }

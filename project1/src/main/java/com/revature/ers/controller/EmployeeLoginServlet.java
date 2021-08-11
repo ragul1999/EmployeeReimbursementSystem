@@ -17,11 +17,12 @@ public class EmployeeLoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
-		out.println("success");
 		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");
 		String type=request.getParameter("type");
 		
+		String invalidLogin="<h3 style='color:red; text-align=center;'>Login details are incorrect</h3>";
+		invalidLogin+="<a href='http://localhost:8080/controller/login.html'><span style='text-align:center;color:red;display:inline-block'>Back to Login</span></a>";
 		
 		ValidateEmployee val=new ValidateEmployee();//to check employee is a valid entry
 		try {
@@ -34,7 +35,8 @@ public class EmployeeLoginServlet extends HttpServlet {
 					response.sendRedirect(link);
 				}
 				else {
-					out.println("<h3 style='color:red; text-align=center;'>Login details are incorrect</h3>");
+					
+					out.println(invalidLogin);
 				}
 			}
 			else {
@@ -46,7 +48,8 @@ public class EmployeeLoginServlet extends HttpServlet {
 					response.sendRedirect(link);
 				}
 				else {
-					out.println("<h3 style='color:red; text-align=center;'>Login details are incorrect</h3>");
+					
+					out.println(invalidLogin);
 				}
 			}
 			
