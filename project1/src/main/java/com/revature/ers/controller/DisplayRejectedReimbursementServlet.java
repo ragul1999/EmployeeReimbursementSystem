@@ -18,6 +18,13 @@ public class DisplayRejectedReimbursementServlet extends HttpServlet {
 		String managerId=request.getParameter("managerId");
 		PrintWriter out=response.getWriter();
 		
+		if(managerId==null) {
+			String invalidLogin="<h3 style='color:red; text-align:center;'>Your session is invalid, login first and try again</h3>";
+			invalidLogin+="<a href='http://localhost:8080/controller/login.html' style='display:inline-block;text-align:center'>Login here</a>";
+			out.println(invalidLogin);
+		}
+		
+		else {
 		ArrayList<RejectedReimbursementEntity> rejectedList=(ArrayList<RejectedReimbursementEntity>)request.getSession().getAttribute("rejectedList");
 		String resultPage="<!DOCTYPE html>\r\n"
 				+ "<html>\r\n"
@@ -90,7 +97,7 @@ public class DisplayRejectedReimbursementServlet extends HttpServlet {
 				+ "</html>";
 		out.println(resultPage);
 		
-	
+		}
 		
 	}
 

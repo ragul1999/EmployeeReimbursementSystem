@@ -18,7 +18,7 @@ public 	List<EmployeeEntity> getEmployeeByEmployeeId(Employee e){
 				
 				Query q=session.createQuery("from EmployeeEntity e where employee_id=:empId").setParameter("empId", e.getEmployeeId());
 				employeeList=q.list();
-		
+				session.close();
 		}
 		catch (Exception e1) {
 			

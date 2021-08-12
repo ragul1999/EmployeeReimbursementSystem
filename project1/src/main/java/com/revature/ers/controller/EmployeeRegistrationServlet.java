@@ -33,10 +33,11 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 		String department=request.getParameter("department");
 		String designation=request.getParameter("designation");
 		String email=request.getParameter("email").toLowerCase();
-		String pwd=request.getParameter("psw");
+		String pwd=request.getParameter("pwd");
 		String type=request.getParameter("type");
 		String status=request.getParameter("status");//only for employee update details
 		String addedOn=request.getParameter("addedOn");//only for employee update details
+		
 
 	try {
 		if("E".equals(type)) {
@@ -49,7 +50,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 					try {
 						String errorPage="<h3 style='text-align:center;color:red'>Entered Employee Id already exist, use login</h3>";
 						errorPage+="<a href='http://localhost:8080/controller/login.html'><span style='text-align:center;display:inline-block'>Login here</span></a>";
-						out.println(errorPage);
+						
 						throw new DuplicateIdException(errorPage);
 					}catch(Exception e) {
 						out.println(e.getMessage());
@@ -63,7 +64,8 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 				employee.setPassword(pwd);
 				EmployeeRegistrationService employeeService =new EmployeeRegistrationServiceImpl();
 				employeeService.addEmployee(employee);
-				response.sendRedirect("http://localhost:8080/controller/login.html");
+				
+				response.sendRedirect("http://localhost:8080/controller/regist_success.html");
 				}
 			}
 			
@@ -91,7 +93,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 			manager.setPassword(pwd);
 			EmployeeRegistrationService employeeService =new EmployeeRegistrationServiceImpl();
 			employeeService.addManager(manager);
-			response.sendRedirect("http://localhost:8080/controller/login.html");
+			response.sendRedirect("http://localhost:8080/controller/regist_success.html");
 			 }
 			
 		}
@@ -103,7 +105,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 				try {
 					String errorPage="<h3 style='text-align:center;color:red'>Entered Employee Id doesn't exist, please create an account using sign up</h3>";
 					errorPage+="<a href='http://localhost:8080/controller/signup.html'><span style='text-align:center;display:inline-block'>Create account here</span></a>";
-					out.println(errorPage);
+				
 					throw new EmployeeNotFoundException(errorPage);
 				}catch(EmployeeNotFoundException e) {
 					out.println(e.getMessage());

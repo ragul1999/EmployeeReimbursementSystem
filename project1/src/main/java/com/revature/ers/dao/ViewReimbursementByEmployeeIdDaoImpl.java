@@ -21,7 +21,7 @@ public class ViewReimbursementByEmployeeIdDaoImpl implements ViewReimbursementBy
 		try {
 				Query q=session.createQuery("from PendingReimbursementEntity e where employee_id=:empId").setParameter("empId",reimburse.getEmployeeId());
 				resultList=q.list();
-				
+				session.close();
 		}
 		catch (Exception e1) {
 			
@@ -43,7 +43,7 @@ public class ViewReimbursementByEmployeeIdDaoImpl implements ViewReimbursementBy
 		try {
 				Query q=session.createQuery("from RejectedReimbursementEntity e where employee_id=:empId").setParameter("empId",reimburse.getEmployeeId());
 				resultList=q.list();
-				
+				session.close();
 		}
 		catch (Exception e1) {
 			
@@ -66,7 +66,7 @@ public class ViewReimbursementByEmployeeIdDaoImpl implements ViewReimbursementBy
 		try {
 				Query q=session.createQuery("from ResolvedReimbursementEntity e where employee_id=:empId").setParameter("empId",reimburse.getEmployeeId());
 				resultList=q.list();
-				
+				session.close();
 		}
 		catch (Exception e1) {
 			

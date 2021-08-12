@@ -5,6 +5,13 @@
         <title>Add Expense Reimbursement page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="add_reimbursement.css">
+        <script>
+   			var id = window.location.search;
+			if(id == null || id=="") {
+			alert("you need to login first to access this page");
+		    window.location.replace("http://localhost:8080/controller/login.html");
+			}
+		    </script>
     </head>
     <body>
        
@@ -18,23 +25,24 @@
           
         </div>
             <hr>
-            <label for="id"  ><b>Employee ID</b></label>
-             <input type="text" placeholder="Enter ID" name="id" required>
-         <label for="type" ><b>Reimbursement Type</b></label>
+            <label for="id"  ><b>Employee ID</b><span style="color: red">*</span></label>
+             <input type="number" placeholder="Enter ID" name="id" min=1000 max=9999 title="id is a four digit number, cannot contain characters" required>
+         <label for="type" ><b>Reimbursement Type</b><span style="color: red">*</span></label>
           <select name="reimburse-type" id="type" type="text"  required>
-            <option type="text" value="none" selected disabled hidden>Choose type</option>
+            <option type="text" value="" hidden>Choose type</option>
             <option type="text" value="Food" >Food</option>
                 <option type="text" value="Medical Expense">Medical Expense</option>
                 <option type="text" value="Travel">Travel</option>
                 <option type="text" value="Lodging">Lodging</option>
                 <option type="text" value="Others">Others</option>
              </select>
-             <label for="days-spent"  ><b>Number of days spent</b></label>
-             <input type="number" min="1" placeholder="Enter days spent" name="days-spent" required>
-             <label for="reimburse-amount"  ><b>Reimbursement amount</b></label>
-             <input type="number" min="1" placeholder="Enter reimburse amount" name="reimburse-amount" required>
+             <label for="days-spent"  ><b>Number of days spent</b><span style="color: red">*</span></label>
+             <input type="number" min="1" placeholder="Enter days spent" name="days-spent" title="number of days spent must be greater than or equal to 1" required>
+             <label for="reimburse-amount"  ><b>Reimbursement amount</b><span style="color: red">*</span></label>
+             <input type="number" min="1" placeholder="Enter reimburse amount" name="reimburse-amount" title="amount spent must be greater than or equal to 1"  required>
              <label for="description"  ><b>Description(optional)</b></label>
              <textarea name="description" style="font-family: arial" rows="2" cols="10"></textarea>
+             <input type="hidden" name="sessionId" id="sessionId"></input>
             </div>
       
             <div class="container" style="background-color:#f1f1f1">
@@ -47,6 +55,7 @@
          <script>
         	 var id = window.location.search;
          	document.getElementById("demo").href="http://localhost:8080/controller/employee_home.html"+id;
+         	document.getElementById("sessionId").value=id.substring(4);
          </script>
         
     </body>

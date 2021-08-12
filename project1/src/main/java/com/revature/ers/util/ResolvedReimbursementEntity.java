@@ -30,6 +30,8 @@ public class ResolvedReimbursementEntity {
 	Integer managerId=-1;
 	@Column(name="updated_on")
 	String updatedOn="";
+
+	
 	
 	
 	public Integer getResolvedId() {

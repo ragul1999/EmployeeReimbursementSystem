@@ -1,6 +1,7 @@
 package com.revature.ers.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -22,15 +23,20 @@ public class ManagerReimbursementViewServlet extends HttpServlet {
 		response.setContentType("text/html");
 		String status=request.getParameter("status");
 		String managerId=request.getParameter("managerId");
-		//String empId=request.getParameter("empId");
+		PrintWriter out=response.getWriter();
 		
+		//to avoid manager id null exceptions
+		if(managerId==null ) {
+			String invalidLogin="<h3 style='color:red; text-align:center;'>Your session is invalid, login first and try again</h3>";
+			invalidLogin+="<a href='http://localhost:8080/controller/login.html' style='display:inline-block;text-align:center'>Login here</a>";
+			out.println(invalidLogin);
+		}
 		
+		else {
 		
 		ManagerViewReimbursementService serviceImpl=new ManagerViewReimbursementServiceImpl();
 		
-		
-		
-	if("pending".equals(status) ) {
+		 if("pending".equals(status) ) {
 		
 		List<PendingReimbursementEntity>pendingList=serviceImpl.getPendingReimbursement();
 			request.getSession().setAttribute("pendingList",pendingList);
@@ -62,7 +68,7 @@ public class ManagerReimbursementViewServlet extends HttpServlet {
 		
 		}
 			
-	
+		}
 		
 		
 	}

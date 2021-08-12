@@ -22,8 +22,14 @@ public class DisplayAllReimbursementServlet extends HttpServlet {
 		String managerId=request.getParameter("managerId");
 		PrintWriter out=response.getWriter();
 		
-		/* displaying expense reimbursement history list starts*/
+		if(managerId==null) {
+			String invalidLogin="<h3 style='color:red; text-align:center;'>Your session is invalid, login first and try again</h3>";
+			invalidLogin+="<a href='http://localhost:8080/controller/login.html' style='display:inline-block;text-align:center'>Login here</a>";
+			out.println(invalidLogin);
+		}
 		
+		/* displaying expense reimbursement history list starts*/
+		else {	
 		String resultPage="<!DOCTYPE html>\r\n"
 				+ "<html>\r\n"
 				+ "<head>\r\n"
@@ -67,7 +73,6 @@ public class DisplayAllReimbursementServlet extends HttpServlet {
 				+ "        <div class=\"container\"><a href=\"http://localhost:8080/controller/manager_home.html?id="+managerId+"\">Back to Home</a><br><br>\r\n"
 				+ "    <table id=\"customers\">\r\n"
 				+ "        <tr>\r\n"
-				+ "          <th>Reimbursement Id</th>\r\n"
 				+"             <th>Status Id</th>  \r\n"
 				+ "          <th>Employee Id</th>\r\n"
 				+ "          <th>Type</th>\r\n"
@@ -86,7 +91,7 @@ public class DisplayAllReimbursementServlet extends HttpServlet {
 		List<ResolvedReimbursementEntity> resolvedList=serviceImpl.getResolvedReimbursement();
 		
 		for(PendingReimbursementEntity list:pendingList) {
-			resultPage+="<tr><td>"+"</td><td>"+list.getPendingId()+"</td><td>"
+			resultPage+="<tr><td>"+list.getPendingId()+"</td><td>"
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
 					+"</td><td>"+list.getDescription()+"</td><td>"+list.getAddedOn()+"</td><td>pending</td>"
@@ -98,7 +103,7 @@ public class DisplayAllReimbursementServlet extends HttpServlet {
 		}
 		
 		for(ResolvedReimbursementEntity list:resolvedList) {
-		resultPage+="<tr><td></td><td>"+list.getResolvedId()+"</td><td>"
+		resultPage+="<tr><td>"+list.getResolvedId()+"</td><td>"
 				+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 				+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
 				+"</td><td>"+list.getDescription()+"</td><td>"+list.getAddedOn()+"</td><td>approved</td><td>"
@@ -108,7 +113,7 @@ public class DisplayAllReimbursementServlet extends HttpServlet {
 		
 		for(RejectedReimbursementEntity list:rejectedList) {
 			
-			resultPage+="<tr><td></td><td>"+list.getRejectedId()+"</td><td>"
+			resultPage+="<tr><td>"+list.getRejectedId()+"</td><td>"
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
 					+"</td><td>"+list.getDescription()+"</td><td>"+list.getAddedOn()+"</td><td>rejected</td><td>"
@@ -124,7 +129,7 @@ public class DisplayAllReimbursementServlet extends HttpServlet {
 				+ "</html>";
 		out.println(resultPage);
 		/* displaying expense reimbursement list ends*/
-		
+		}
 	
 	}
 

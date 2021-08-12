@@ -16,7 +16,7 @@ public class ValidateEmployee {
 			EmployeeEntity query=session.get(EmployeeEntity.class,e.getEmployeeId());
 			if(query!=null && query.getEmployeeId()==e.getEmployeeId() && (query.getPassword()).equals(e.getPassword()))
 				result=true;
-			
+			session.close();
 		}catch(Exception e1) {
 			e1.printStackTrace();
 		}finally {
@@ -34,6 +34,7 @@ public class ValidateEmployee {
 			ManagerEntity query=session.get(ManagerEntity.class,m.getManagerId());
 			if(query!=null && query.getManagerId()==m.getManagerId() && (query.getPassword()).equals(m.getPassword()))
 				result=true;
+			session.close();
 			
 		}catch(Exception e1) {
 			e1.printStackTrace();
@@ -52,7 +53,7 @@ public class ValidateEmployee {
 			EmployeeEntity query=session.get(EmployeeEntity.class,e.getEmployeeId());
 			if(query!=null && query.getEmployeeId()==e.getEmployeeId())
 				result=true;
-			
+			session.close();
 		}catch(Exception e1) {
 			e1.printStackTrace();
 		}finally {
@@ -71,7 +72,7 @@ public class ValidateEmployee {
 			ManagerEntity query=session.get(ManagerEntity.class,m.getManagerId());
 			if(query!=null && query.getManagerId()==m.getManagerId() )
 				result=true;
-			
+			session.close();
 		}catch(Exception e1) {
 			e1.printStackTrace();
 		}finally {

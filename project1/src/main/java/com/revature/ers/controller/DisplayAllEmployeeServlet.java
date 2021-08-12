@@ -24,6 +24,15 @@ public class DisplayAllEmployeeServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();
 		String managerId=request.getParameter("managerId");
 		String empId=request.getParameter("empId");
+	
+		
+	if(empId==null &&managerId==null) {
+		String invalidLogin="<h3 style='color:red; text-align:center;'>Your session is invalid, login first and try again</h3>";
+		invalidLogin+="<a href='http://localhost:8080/controller/login.html' style='display:inline-block;text-align:center'>Login here</a>";
+		out.println(invalidLogin);
+	}
+	
+	else {
 		List<EmployeeEntity> employeeList=null;
 		
 		if(managerId==null && empId!=null) {
@@ -111,7 +120,7 @@ public class DisplayAllEmployeeServlet extends HttpServlet {
 				+ "</body>\r\n"
 				+ "</html>";
 		out.println(resultPage);
-		
+	}	
 	}
 
 }

@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="manager_home.css">
     </head>
+    <script>
+   			var id = window.location.search;
+			if(id == null || id=="") {
+			alert("you need to login first to access this page");
+		    window.location.replace("http://localhost:8080/controller/login.html");
+			}
+		    </script>
     <body >
        
         <h1 id="head" style="color:red">Expense Reimbursement System- Employee Home page</h1>

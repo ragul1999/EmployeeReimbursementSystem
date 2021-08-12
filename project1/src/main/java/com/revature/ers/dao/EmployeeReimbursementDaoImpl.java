@@ -33,7 +33,7 @@ public class EmployeeReimbursementDaoImpl implements EmployeeReimbursementDao{
 			session.save(request);
 			session.flush();
 			session.getTransaction().commit();
-			
+			session.close();
 			
 		} catch (Exception e1) {
 			

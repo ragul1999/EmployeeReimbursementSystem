@@ -30,7 +30,7 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 			session.beginTransaction();
 			session.save(empEntity);
 			session.getTransaction().commit();
-			
+			session.close();
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();
@@ -56,7 +56,7 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 			session.beginTransaction();
 			session.save(managerEntity);
 			session.getTransaction().commit();
-			
+			session.close();
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();
@@ -84,7 +84,7 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 			session.merge(employeeEntity);
 			session.flush();
 			session.getTransaction().commit();
-			
+			session.close();
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();

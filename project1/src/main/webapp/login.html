@@ -7,22 +7,23 @@
         <link rel="stylesheet" href="login.css">
     </head>
     <body>
-   <form action="http://localhost:8080/controller/EmployeeLoginServlet" method="get" autocomplete="off">
+   <form action="http://localhost:8080/controller/EmployeeLoginServlet" method="post" autocomplete="off">
            <div class="container" >
              <div style="text-align: center;">
             <h1 >Login</h1>
             <p >Please fill in this form to log into your account.</p>
         </div>
             <hr>
-            <label for="id"  ><b>ID</b></label>
-             <input type="text" placeholder="Enter ID" name="id" required>
+            <label for="id"  ><b>ID</b><span style="color: red">*</span></label>
+             <input type="number" placeholder="Enter ID" name="id" min=1000 max=9999 title="id is a four digit number, cannot contain characters" required>
            
-            <label for="psw" ><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="pwd" required>
+            <label for="psw" ><b>Password</b><span style="color: red">*</span></label>
+            <input type="password" placeholder="Enter Password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters" required>
                 
-         <label for="type" ><b>Type</b></label>
+         <label for="type" ><b>Type</b><span style="color: red">*</span></label>
           <select name="type" id="type" type="text"  required>
-            <option type="text" value="none" selected disabled hidden>Choose type</option>
+            <option type="text" value=""  hidden>Choose type</option>
             <option type="text" value="E" >Employee</option>
                 <option type="text" value="M">Manager</option>
              

@@ -20,6 +20,15 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 			response.setContentType("text/html");
 			PrintWriter out=response.getWriter();
 			String empId=request.getParameter("empId");
+			
+			if(empId==null) {
+				String invalidLogin="<h3 style='color:red; text-align:center;'>Your session is invalid, login first and try again</h3>";
+				invalidLogin+="<a href='http://localhost:8080/controller/login.html' style='display:inline-block;text-align:center'>Login here</a>";
+				out.println(invalidLogin);
+			}
+			
+			else {	
+			
 			List<EmployeeEntity> employeeList=null;
 			
 			if(empId!=null) {
@@ -52,7 +61,7 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 					+ "        *{box-sizing: border-box} \r\n"
 					+ "\r\n"
 					+ "/* Full-width input fields */\r\n"
-					+ "  input[type=text],input[type=email] {\r\n"
+					+ "  input[type=text],input[type=email],input[type=number] {\r\n"
 					+ "  width: 100%;\r\n"
 					+ "  padding: 15px;\r\n"
 					+ "  margin: 5px 0 22px 0;\r\n"
@@ -84,7 +93,7 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 					+ "  background-color: #ddd;\r\n"
 					+ "  outline: none;\r\n"
 					+ "}\r\n"
-					+ "input[type=text]:focus,input[type=email]:focus{\r\n"
+					+ "input[type=text]:focus,input[type=email]:focus,input[type=number]{\r\n"
 					+ "  background-color: #ddd;\r\n"
 					+ "  outline: none;\r\n"
 					+ "}\r\n"
@@ -158,10 +167,9 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 					+ "                  <h1>Employee Details</h1>\r\n"
 					+ "                    </div>\r\n"
 					+ "                  <hr>\r\n"
-					+ "                  <label for=\"id\"><b>Employee Id</b></label>\r\n"
-					+ "                  <input  type=\"text\" placeholder=\"Employee Id\" name=\"id\" value=\""+empId+"\" required>\r\n"
+					+ "                  <input  type=\"hidden\" placeholder=\"Employee Id\" name=\"id\" value=\""+empId+"\" min=1000 max=9999 title=\"id is a four digit number, cannot contain characters\">\r\n"
 					+ "                  <label for=\"name\"><b>Name</b></label>\r\n"
-					+ "                  <input type=\"text\" placeholder=\"Name\" name=\"name\" value=\""+empName+"\" required>\r\n"
+					+ "                  <input type=\"text\" placeholder=\"Name\" name=\"name\" value=\""+empName+"\" minlength='2' required>\r\n"
 					+ "                  <label for=\"department\"><b>Department</b></label>\r\n"
 					+ "                  <select name=\"department\" id=\"department\" type=\"text\" required>\r\n"
 					+ "                    <option type=\"text\" value=\""+dept+"\" selected>"+dept+"</option>\r\n"
@@ -202,7 +210,7 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 					+ "                    <option type=\"text\"value=\"Others\">Others</option>\r\n"
 					+ "                  </select><br>\r\n"
 					+ "                  <label for=\"email\"><b>Email</b></label>\r\n"
-					+ "                  <input type=\"email\" placeholder=\"Email\" name=\"email\" value=\""+email+"\" required>\r\n"
+					+ "                  <input type=\"email\" placeholder=\"Email\" name=\"email\" value=\""+email+"\"  pattern=\"[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$\" title=\"email id cannot contain upper case, must contain @ and . in it. For example, sample@gmail.com\" required>\r\n"
 					+ "              <input type=\"hidden\" name=\"status\" value=\"update\">       \r\n"
 					+"     <input type=\"hidden\" name=\"pwd\" value=\""+pwd+"\">                      \r\n "
 					+ "     <input type=\"hidden\" name=\"addedOn\" value=\""+addedOn+"\">            \r\n"
@@ -222,5 +230,5 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 			
 			out.println(resultPage);
 	}
-
+	}
 }

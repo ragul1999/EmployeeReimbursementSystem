@@ -23,7 +23,13 @@ public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet
 		String status=request.getParameter("status");
 		String empId=request.getParameter("empId");
 		
+		if(empId==null || "".equals(empId)){
+			String invalidLogin="<h3 style='color:red; text-align:center;'>Your session is invalid, login first and try again</h3>";
+			invalidLogin+="<a href='http://localhost:8080/controller/login.html' style='display:inline-block;text-align:center'>Login here</a>";
+			out.println(invalidLogin);
+		}
 		
+		else {
 		Reimbursement reimburse=new Reimbursement();
 		ViewReimbursementService impl=new ViewReimbursementServiceImpl();
 		List<PendingReimbursementEntity> pendingList=null;
@@ -154,7 +160,7 @@ public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet
 		
 	}	
 	
-	
+	}
 	
 
 }

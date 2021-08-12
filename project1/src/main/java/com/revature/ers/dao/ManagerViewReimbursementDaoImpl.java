@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.revature.ers.db.HibernateUtil;
-import com.revature.ers.exceptions.ReimbursementNotFoundException;
 import com.revature.ers.model.Employee;
 import com.revature.ers.model.Reimbursement;
 import com.revature.ers.util.EmployeeEntity;
@@ -51,7 +50,7 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 				
 				Query q=session.createQuery("from RejectedReimbursementEntity r");
 				rejectedList=q.list();
-				 
+				session.close();
 			
 		}
 		catch (Exception e1) {
@@ -78,7 +77,7 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 				
 				Query q=session.createQuery("from ResolvedReimbursementEntity e");
 				resolvedList=q.list();
-				 
+				session.close();
 			
 		}
 		catch (Exception e1) {
@@ -106,7 +105,7 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 				
 				Query q=session.createQuery("from EmployeeEntity e");
 				employeeList=q.list();
-		
+				session.close();
 		}
 		catch (Exception e1) {
 			
