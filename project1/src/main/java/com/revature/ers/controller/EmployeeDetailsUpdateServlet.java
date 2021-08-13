@@ -9,15 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ers.model.Employee;
 import com.revature.ers.service.EmployeeShowDetailsByEmpoyeeIdService;
 import com.revature.ers.service.EmployeeShowDetailsByEmpoyeeIdServiceImpl;
 import com.revature.ers.util.EmployeeEntity;
 
 public class EmployeeDetailsUpdateServlet extends HttpServlet {
-
+	Logger logger=Logger.getLogger(EmployeeDetailsUpdateServlet.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			response.setContentType("text/html");
+		 logger.info("entered into doGet");	
+		response.setContentType("text/html");
 			PrintWriter out=response.getWriter();
 			String empId=request.getParameter("empId");
 			
@@ -229,6 +232,7 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 			
 			
 			out.println(resultPage);
+			 logger.info("employee details updated by employee");	
 	}
 	}
 }

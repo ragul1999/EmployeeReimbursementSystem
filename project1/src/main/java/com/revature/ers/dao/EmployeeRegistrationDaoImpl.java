@@ -4,6 +4,7 @@ package com.revature.ers.dao;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 import com.revature.ers.db.HibernateUtil;
@@ -15,11 +16,13 @@ import com.revature.ers.util.ManagerEntity;
 import com.revature.ers.util.ManagerMapper;
 
 public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
+	Logger logger=Logger.getLogger(EmployeeRegistrationDaoImpl.class);
 	final LocalDateTime now=LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy KK:mm:ss a");
     String localTime = now.format(formatter);
 //add employee starts	
 	 public void addEmployee(Employee e) {
+		 logger.info("entered into add employee");
 		 e.setAddedOn(localTime.toString());
 		 e.setUpdatedOn("");
 		 
@@ -33,19 +36,21 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 			session.close();
 		} catch (Exception e1) {
 			
-			e1.printStackTrace();
+			logger.warn(e1.getMessage());
 		}
 		finally {
 			if(session!=null) {
 				session.close();
 			}
 		}
-		 
+		
+		 logger.info("finished adding employee"); 
 	 }
 //add employee ends
 	 
 //add manager starts
 	 public void addManager(Manager m) {
+		 logger.info("entered into add manager");
 		 m.setAddedOn(localTime.toString());
 		 m.setUpdatedOn("");
 		 
@@ -59,21 +64,21 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 			session.close();
 		} catch (Exception e1) {
 			
-			e1.printStackTrace();
+			logger.warn(e1.getMessage());
 		}
 		finally {
 			if(session!=null) {
 				session.close();
 			}
 		}
-		 
+		 logger.info("finished adding manager"); 
 	 }
 //add manager ends
 
 //update employee starts
 	@Override
 	public void updateEmployee(Employee employee) {
-		
+		 logger.info("entered into update employee");
 		employee.setUpdatedOn(localTime.toString());
 		 
 		 Session session=HibernateUtil.getSessionFactory().openSession();
@@ -87,14 +92,14 @@ public class EmployeeRegistrationDaoImpl implements EmployeeRegistrationDao{
 			session.close();
 		} catch (Exception e1) {
 			
-			e1.printStackTrace();
+			logger.warn(e1.getMessage());
 		}
 		finally {
 			if(session!=null) {
 				session.close();
 			}
 		}
-		
+		 logger.info("finished updating employee");
 	} 
 //update employee ends
 	 

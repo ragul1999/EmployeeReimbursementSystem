@@ -3,6 +3,7 @@ package com.revature.ers.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -15,10 +16,11 @@ import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursementDao {
-	
+	Logger logger=Logger.getLogger(ManagerViewReimbursementDaoImpl.class);
 //view pending reimbursement starts	
 	@Override
 	public List<PendingReimbursementEntity> getPendingReimbursement(){
+		 logger.info("entered into getPendingReimbursement");
 		List<PendingReimbursementEntity> pendingList=null;
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		try {
@@ -30,13 +32,13 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 		}
 		catch (Exception e1) {
 			
-			e1.printStackTrace();
+			logger.warn(e1.getMessage());
 		}
 		finally {
 			if(session!=null)
 				session.close();
 		}
-		 
+		 logger.info("finished getPendingReimbursement");
 	return pendingList;
 }
 //view pending reimbursement ends 
@@ -44,6 +46,7 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 //view rejected reimbursement starts
 	@Override
 	public List<RejectedReimbursementEntity> getRejectedReimbursement() {
+		 logger.info("entered into getRejectedReimbursement");
 		List<RejectedReimbursementEntity> rejectedList=null;
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		try {
@@ -55,13 +58,13 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 		}
 		catch (Exception e1) {
 			
-			e1.printStackTrace();
+			logger.warn(e1.getMessage());
 		}
 		finally {
 			if(session!=null)
 				session.close();
 		}
-		 
+		 logger.info("finished getRejectedReimbursement");
 	return rejectedList;
 		
 		
@@ -71,6 +74,7 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 //view resolved reimbursement starts
 	@Override
 	public List<ResolvedReimbursementEntity> getResolvedReimbursement() {
+		 logger.info("entered into getResolvedReimbursement");
 		List<ResolvedReimbursementEntity> resolvedList=null;
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		try {
@@ -82,13 +86,13 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 		}
 		catch (Exception e1) {
 			
-			e1.printStackTrace();
+			logger.warn(e1.getMessage());
 		}
 		finally {
 			if(session!=null)
 				session.close();
 		}
-		 
+		 logger.info("finished getResolvedReimbursement"); 
 	return resolvedList;
 		
 		
@@ -99,6 +103,7 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 //View all employees starts
 	@Override
 	public List<EmployeeEntity> getAllEmployees() {
+		 logger.info("entered into getAllEmployees");
 		List<EmployeeEntity> employeeList=null;
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		try {
@@ -109,13 +114,13 @@ public class ManagerViewReimbursementDaoImpl implements ManagerViewReimbursement
 		}
 		catch (Exception e1) {
 			
-			e1.printStackTrace();
+			logger.warn(e1.getMessage());
 		}
 		finally {
 			if(session!=null)
 				session.close();
 		}
-		 
+		 logger.info("finished getAllEmployees"); 
 	return employeeList;
 	}
 		

@@ -10,7 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ers.bo.ValidateEmployee;
+import com.revature.ers.dao.ViewReimbursementByEmployeeIdDaoImpl;
 import com.revature.ers.exceptions.EmployeeNotFoundException;
 import com.revature.ers.model.Employee;
 import com.revature.ers.model.Reimbursement;
@@ -21,8 +24,9 @@ import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class DisplayReimbursementByEmployeeIdServlet extends HttpServlet {
-
+	Logger logger=Logger.getLogger("DisplayReimbursementByEmployeeIdServlet.class");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.info("entered into doGet");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		String managerId=request.getParameter("managerId");
@@ -166,10 +170,12 @@ public class DisplayReimbursementByEmployeeIdServlet extends HttpServlet {
 					+ "</html>";
 			out.println(resultPage);
 			/* displaying expense reimbursement list ends*/
+			logger.info("finished printing result");
 			}
 			
 			}catch(Exception e) {
 				out.println(e.getMessage());
+				logger.warn(e.getMessage());
 			}
 		
 	}

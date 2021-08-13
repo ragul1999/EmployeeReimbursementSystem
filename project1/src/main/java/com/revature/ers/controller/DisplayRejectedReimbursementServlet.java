@@ -9,11 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.revature.ers.dao.ViewReimbursementByEmployeeIdDaoImpl;
 import com.revature.ers.util.RejectedReimbursementEntity;
 
 public class DisplayRejectedReimbursementServlet extends HttpServlet {
-	
+	Logger logger=Logger.getLogger("DisplayRejectedReimbursementServlet.class");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.info("entered into doGet");
 		response.setContentType("text/html");
 		String managerId=request.getParameter("managerId");
 		PrintWriter out=response.getWriter();
@@ -96,7 +100,7 @@ public class DisplayRejectedReimbursementServlet extends HttpServlet {
 				+ "</body>\r\n"
 				+ "</html>";
 		out.println(resultPage);
-		
+		logger.info("finished printing result");
 		}
 		
 	}

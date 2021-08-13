@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ers.exceptions.DuplicateIdException;
 import com.revature.ers.exceptions.InvalidRequestException;
 import com.revature.ers.model.Employee;
@@ -21,8 +23,9 @@ import java.util.ArrayList;
 
 
 public class EmployeeReimbursement extends HttpServlet {
-
+	Logger logger=Logger.getLogger("EmployeeReimbursement.class");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				 logger.info("entered into doGet");
 				response.setContentType("text/html");
 				PrintWriter out=response.getWriter();
 				String employeeId=request.getParameter("id");
@@ -68,7 +71,7 @@ public class EmployeeReimbursement extends HttpServlet {
 					
 					EmployeeReimbursementService impl=new EmployeeReimbursementServiceImpl();
 					impl.addReimbursement(reimburse,pendingReimburse);
-					
+					 logger.info("redirect to reimbursement_success.html");
 					String link="http://localhost:8080/controller/reimbursement_success.html?id="+employeeId;
 					response.sendRedirect(link);  
 					

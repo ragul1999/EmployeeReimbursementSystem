@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.revature.ers.dao.ViewReimbursementByEmployeeIdDaoImpl;
 import com.revature.ers.service.ManagerViewReimbursementService;
 import com.revature.ers.service.ManagerViewReimbursementServiceImpl;
 import com.revature.ers.util.PendingReimbursementEntity;
@@ -16,8 +19,9 @@ import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class DisplayAllReimbursementServlet extends HttpServlet {
-	
+	Logger logger=Logger.getLogger("DisplayAllReimbursementServlet.class");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		logger.info("entered into doGet");
 		response.setContentType("text/html");
 		String managerId=request.getParameter("managerId");
 		PrintWriter out=response.getWriter();
@@ -129,6 +133,7 @@ public class DisplayAllReimbursementServlet extends HttpServlet {
 				+ "</html>";
 		out.println(resultPage);
 		/* displaying expense reimbursement list ends*/
+		logger.info("finished printing result");
 		}
 	
 	}

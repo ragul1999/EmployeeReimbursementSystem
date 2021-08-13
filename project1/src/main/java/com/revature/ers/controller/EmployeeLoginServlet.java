@@ -8,13 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ers.bo.ValidateEmployee;
 import com.revature.ers.model.Employee;
 import com.revature.ers.model.Manager;
 
 public class EmployeeLoginServlet extends HttpServlet {
-	
+	Logger logger=Logger.getLogger("EmployeeLoginServlet.class");
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 logger.info("entered into doGet");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		String id=request.getParameter("id");
@@ -42,8 +45,8 @@ public class EmployeeLoginServlet extends HttpServlet {
 				}
 				
 				else if(val.checkEmployee(employee)) {
-					
-					String link="http://localhost:8080/controller/employee_home.html?id="+id;
+					 logger.info("redirect to employee home after validation");	
+					String link="http://localhost:8080/controller/employee_login_success.html?id="+id;
 					response.sendRedirect(link);
 				}
 				else {
@@ -62,8 +65,8 @@ public class EmployeeLoginServlet extends HttpServlet {
 				}
 				
 				else if(val.checkManager(manager)){
-				
-					String link="http://localhost:8080/controller/manager_home.html?id="+id;
+					 logger.info("redirect to manager home after validation");	
+					String link="http://localhost:8080/controller/manager_login_success.html?id="+id;
 					response.sendRedirect(link);
 				}
 				else {
@@ -75,7 +78,7 @@ public class EmployeeLoginServlet extends HttpServlet {
 			
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage());
 		}
 	
 	}

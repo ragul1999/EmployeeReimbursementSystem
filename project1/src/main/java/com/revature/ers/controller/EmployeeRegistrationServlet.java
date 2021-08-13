@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+import org.apache.log4j.Logger;
 
 import com.revature.ers.bo.ValidateEmployee;
 import com.revature.ers.exceptions.DuplicateIdException;
@@ -23,8 +23,9 @@ import com.revature.ers.service.EmployeeRegistrationServiceImpl;
 
 
 public class EmployeeRegistrationServlet extends HttpServlet {
-	
+	Logger logger=Logger.getLogger("EmployeeRegistrationServlet.class");
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 logger.info("entered into doGet");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		
@@ -54,6 +55,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 						throw new DuplicateIdException(errorPage);
 					}catch(Exception e) {
 						out.println(e.getMessage());
+						logger.warn(e.getMessage());
 					}
 				}
 				else {	
@@ -64,7 +66,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 				employee.setPassword(pwd);
 				EmployeeRegistrationService employeeService =new EmployeeRegistrationServiceImpl();
 				employeeService.addEmployee(employee);
-				
+				logger.info("redirect to reimbursement_success.html");
 				response.sendRedirect("http://localhost:8080/controller/regist_success.html");
 				}
 			}
@@ -82,6 +84,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 					 throw new DuplicateIdException(errorPage);
 				 }catch(DuplicateIdException e) {
 					 out.println(e.getMessage());
+					 logger.warn(e.getMessage());
 				 }
 			 }
 			
@@ -93,6 +96,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 			manager.setPassword(pwd);
 			EmployeeRegistrationService employeeService =new EmployeeRegistrationServiceImpl();
 			employeeService.addManager(manager);
+			logger.info("redirect to registration_success.html");
 			response.sendRedirect("http://localhost:8080/controller/regist_success.html");
 			 }
 			
@@ -109,6 +113,7 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 					throw new EmployeeNotFoundException(errorPage);
 				}catch(EmployeeNotFoundException e) {
 					out.println(e.getMessage());
+					logger.warn(e.getMessage());
 				}
 			}
 			
@@ -121,12 +126,13 @@ public class EmployeeRegistrationServlet extends HttpServlet {
 				employee.setPassword(pwd);
 				EmployeeRegistrationService employeeService =new EmployeeRegistrationServiceImpl();
 				employeeService.updateEmployee(employee);
+				logger.info("finished update employee");
 				response.sendRedirect("http://localhost:8080/controller/employee_home.html?id="+id);
 				}
 		}
 		
 	}catch(Exception e) {
-		out.println("");
+		logger.warn(e.getMessage());
 	}
 		
 		

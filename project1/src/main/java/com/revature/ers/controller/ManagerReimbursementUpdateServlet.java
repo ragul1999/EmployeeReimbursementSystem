@@ -8,13 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.revature.ers.model.PendingReimbursement;
 import com.revature.ers.service.ManagerReimbursementUpdateService;
 import com.revature.ers.service.ManagerReimbursementUpdateServiceImpl;
 
 public class ManagerReimbursementUpdateServlet extends HttpServlet {
-	
+	Logger logger=Logger.getLogger("ManagerReimbursementUpdateServlet.class");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 logger.info("entered into doGet");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		String managerId=request.getParameter("managerId");
@@ -35,16 +38,17 @@ public class ManagerReimbursementUpdateServlet extends HttpServlet {
 		if("approved".equals(status)) {
 		
 			impl.approveReimbursement(pending);
-			
+			 logger.info("entered into approveReimbursement");
 		}
 		else {
 			
 			impl.rejectReimbursement(pending);
+			 logger.info("entered into rejectReimbursement");
 		}
 		
 		
 		
-		
+		 logger.info("redirect to manager home");
 		response.sendRedirect("http://localhost:8080/controller/manager_home.html?id="+managerId);
 	}
 	}

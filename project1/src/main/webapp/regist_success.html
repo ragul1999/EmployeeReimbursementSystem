@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+		<title>Sign up success page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+   <body>
+     <h2 style="text-align: center;color: green;">Registration success!</h2>
+      <script>
+      var id=window.location.search;
+         setTimeout(function(){
+            window.location.href ='http://localhost:8080/controller/login.html';
+         }, 5000);
+      </script>
+      <p style="text-align: center;">Web page redirects to Login page after 5 seconds.</p>
+   </body>
+</html>

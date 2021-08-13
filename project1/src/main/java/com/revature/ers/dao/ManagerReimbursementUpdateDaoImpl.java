@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import com.revature.ers.db.HibernateUtil;
@@ -14,12 +15,14 @@ import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class ManagerReimbursementUpdateDaoImpl implements ManagerReimbursementUpdateDao {
+	Logger logger=Logger.getLogger(ManagerReimbursementUpdateDaoImpl.class);
 	final LocalDateTime now=LocalDateTime.now();
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy KK:mm:ss a");
     String localTime = now.format(formatter);
 	
 	@Override
 	public void rejectReimbursement(PendingReimbursement pending) {
+		 logger.info("entered into rejectReimbursement");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		
 		try {
@@ -55,16 +58,17 @@ public class ManagerReimbursementUpdateDaoImpl implements ManagerReimbursementUp
 			session.close();
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage());
 		}
 		finally {
 			if(session!=null)
 				session.close();
 		}
-		
+		 logger.info("finished rejectReimbursement");
 	}
 	@Override
 	public void approveReimbursement(PendingReimbursement pending) {
+		 logger.info("entered into approveReimbursement");
 		Session session=HibernateUtil.getSessionFactory().openSession();
 		
 		try {
@@ -99,11 +103,12 @@ public class ManagerReimbursementUpdateDaoImpl implements ManagerReimbursementUp
 				session.close();
 		}
 		catch(Exception e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage());
 		}
 		finally {
 			if(session!=null)
 				session.close();
-		}	
+		}
+		 logger.info("finished approveReimbursement");
 	}
 }

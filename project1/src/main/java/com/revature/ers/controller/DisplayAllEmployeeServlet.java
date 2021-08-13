@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
+import com.revature.ers.dao.ViewReimbursementByEmployeeIdDaoImpl;
 import com.revature.ers.model.Employee;
 import com.revature.ers.service.EmployeeShowDetailsByEmpoyeeIdService;
 import com.revature.ers.service.EmployeeShowDetailsByEmpoyeeIdServiceImpl;
@@ -18,8 +21,9 @@ import com.revature.ers.util.PendingReimbursementEntity;
 
 
 public class DisplayAllEmployeeServlet extends HttpServlet {
-	
+	Logger logger=Logger.getLogger("DisplayAllEmployeeServlet.class");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		 logger.info("entered into doGet");
 		response.setContentType("text/html");
 		PrintWriter out=response.getWriter();
 		String managerId=request.getParameter("managerId");
@@ -120,6 +124,7 @@ public class DisplayAllEmployeeServlet extends HttpServlet {
 				+ "</body>\r\n"
 				+ "</html>";
 		out.println(resultPage);
+		logger.info("finished printing result");
 	}	
 	}
 
