@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 
 public class EmployeeReimbursement extends HttpServlet {
-	Logger logger=Logger.getLogger("EmployeeReimbursement.class");
+	Logger logger=Logger.getLogger(EmployeeReimbursement.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				 logger.info("entered into doGet");
 				response.setContentType("text/html");

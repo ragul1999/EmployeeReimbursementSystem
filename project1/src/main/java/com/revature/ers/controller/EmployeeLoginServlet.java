@@ -15,7 +15,7 @@ import com.revature.ers.model.Employee;
 import com.revature.ers.model.Manager;
 
 public class EmployeeLoginServlet extends HttpServlet {
-	Logger logger=Logger.getLogger("EmployeeLoginServlet.class");
+	Logger logger=Logger.getLogger(EmployeeLoginServlet.class);
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 logger.info("entered into doGet");
 		response.setContentType("text/html");

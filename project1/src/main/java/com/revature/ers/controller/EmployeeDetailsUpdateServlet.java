@@ -232,7 +232,7 @@ public class EmployeeDetailsUpdateServlet extends HttpServlet {
 			
 			
 			out.println(resultPage);
-			 logger.info("employee details updated by employee");	
+			 logger.info(" inside employee details updated by employee");	
 	}
 	}
 }

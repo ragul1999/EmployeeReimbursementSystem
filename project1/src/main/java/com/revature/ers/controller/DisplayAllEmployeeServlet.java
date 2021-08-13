@@ -21,7 +21,7 @@ import com.revature.ers.util.PendingReimbursementEntity;
 
 
 public class DisplayAllEmployeeServlet extends HttpServlet {
-	Logger logger=Logger.getLogger("DisplayAllEmployeeServlet.class");
+	Logger logger=Logger.getLogger(DisplayAllEmployeeServlet.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 logger.info("entered into doGet");
 		response.setContentType("text/html");

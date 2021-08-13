@@ -15,7 +15,7 @@ import com.revature.ers.service.ManagerReimbursementUpdateService;
 import com.revature.ers.service.ManagerReimbursementUpdateServiceImpl;
 
 public class ManagerReimbursementUpdateServlet extends HttpServlet {
-	Logger logger=Logger.getLogger("ManagerReimbursementUpdateServlet.class");
+	Logger logger=Logger.getLogger(ManagerReimbursementUpdateServlet.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 logger.info("entered into doGet");
 		response.setContentType("text/html");

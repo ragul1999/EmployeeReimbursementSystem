@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
-import com.revature.ers.dao.ViewReimbursementByEmployeeIdDaoImpl;
 import com.revature.ers.model.Reimbursement;
 import com.revature.ers.service.ViewReimbursementService;
 import com.revature.ers.service.ViewReimbursementServiceImpl;
@@ -20,7 +19,7 @@ import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet {
-	Logger logger=Logger.getLogger("DisplayReimbursementEmployeeViewByStatusServlet.class");
+	Logger logger=Logger.getLogger(DisplayReimbursementEmployeeViewByStatusServlet.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("entered into doGet");
 		response.setContentType("text/html");
@@ -56,6 +55,7 @@ public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet
 			pendingList=impl.getPendingReimbursementByEmpId(reimburse);
 		}
 			
+		boolean flag=true;//to print default 'no record found message'
 		
 		/* displaying expense reimbursement list starts*/
 		
@@ -120,6 +120,7 @@ public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet
 				
 	if(pendingList!=null) {	
 		for(PendingReimbursementEntity list:pendingList) {
+			flag=false;
 			resultPage+="<tr><td>"
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
@@ -131,6 +132,7 @@ public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet
 	
 	if(resolvedList!=null) {
 		for(ResolvedReimbursementEntity list:resolvedList) {
+			flag=false;
 			resultPage+="<tr><td>"
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
@@ -144,6 +146,7 @@ public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet
 	
 	if(rejectedList!=null) {
 		for(RejectedReimbursementEntity list:rejectedList) {
+			flag=false;
 			resultPage+="<tr><td>"
 					+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
 					+list.getDaysSpent()+"</td><td>"+list.getReimburseAmount()
@@ -154,9 +157,17 @@ public class DisplayReimbursementEmployeeViewByStatusServlet extends HttpServlet
 				
 		}
 	}
+	
+	
 		resultPage+=" </table>\r\n"
-				+ "    </div>\r\n"
-				+ "</body>\r\n"
+				+ "    </div>\r\n";
+		
+		/* if employee didn't apply for any ers */
+		if(flag==true) {
+			resultPage+="<h4 style='text-align:center;padding:50px;color:red'>No Reimbursement request found at the moment</h4>";
+		}
+		
+		resultPage+= "</body>\r\n"
 				+ "</html>";
 		out.println(resultPage);
 		/* displaying expense reimbursement list ends*/

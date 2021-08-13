@@ -24,7 +24,7 @@ import com.revature.ers.util.RejectedReimbursementEntity;
 import com.revature.ers.util.ResolvedReimbursementEntity;
 
 public class DisplayReimbursementByEmployeeIdServlet extends HttpServlet {
-	Logger logger=Logger.getLogger("DisplayReimbursementByEmployeeIdServlet.class");
+	Logger logger=Logger.getLogger(DisplayReimbursementByEmployeeIdServlet.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		logger.info("entered into doGet");
 		response.setContentType("text/html");
@@ -126,7 +126,7 @@ public class DisplayReimbursementByEmployeeIdServlet extends HttpServlet {
 					if(managerId!=null) {
 					resultPage+= "          <th>Action</th></tr>\r\n";
 					}
-			
+				
 			for(PendingReimbursementEntity list:pendingList) {
 				resultPage+="<tr><td>"
 						+list.getEmployeeId()+"</td><td>"+list.getReimburseType()+"</td><td>"
@@ -164,9 +164,15 @@ public class DisplayReimbursementByEmployeeIdServlet extends HttpServlet {
 				resultPage+= "</tr>";			
 					
 			}
+			
+				
 			resultPage+=" </table>\r\n"
-					+ "    </div>\r\n"
-					+ "</body>\r\n"
+					+ "    </div>\r\n";
+			/* if employee didn't apply for any ers */
+			if(pendingList.size()==0 &&resolvedList.size()==0 &&rejectedList.size()==0 ) {
+				resultPage+="<h4 style='text-align:center;padding:50px;color:red'>No Reimbursement request found at the moment</h4>";
+			}
+			resultPage+= "</body>\r\n"
 					+ "</html>";
 			out.println(resultPage);
 			/* displaying expense reimbursement list ends*/

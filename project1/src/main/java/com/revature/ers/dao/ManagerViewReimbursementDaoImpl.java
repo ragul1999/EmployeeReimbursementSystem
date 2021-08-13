@@ -1,6 +1,6 @@
 package com.revature.ers.dao;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -8,8 +8,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.revature.ers.db.HibernateUtil;
-import com.revature.ers.model.Employee;
-import com.revature.ers.model.Reimbursement;
 import com.revature.ers.util.EmployeeEntity;
 import com.revature.ers.util.PendingReimbursementEntity;
 import com.revature.ers.util.RejectedReimbursementEntity;
