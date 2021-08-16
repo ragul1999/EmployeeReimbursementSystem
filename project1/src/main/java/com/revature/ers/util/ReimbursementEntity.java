@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -21,13 +23,10 @@ public class ReimbursementEntity implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="reimburse_id")
 	private Integer reimburseId;
-	@Column(name="employee_id")
-	private Integer employeeId;
-	
 	
 	@OneToOne(cascade=CascadeType.ALL,targetEntity=PendingReimbursementEntity.class)
 	@JoinColumn(name="pending_id")
-	private PendingReimbursementEntity pendingId;
+	private PendingReimbursementEntity pendingId;  
 	
 	@OneToOne(cascade=CascadeType.ALL,targetEntity=ResolvedReimbursementEntity.class)
 	@JoinColumn(name="resolved_id")
@@ -37,12 +36,20 @@ public class ReimbursementEntity implements Serializable{
 	@JoinColumn(name="rejected_id")
 	private RejectedReimbursementEntity rejectedId;
 	
-
+	@ManyToOne
+	@JoinColumn(name="employee_id",nullable=false)
+	private EmployeeEntity employeeId;
 	
-	@Override
-	public String toString() {
-		return "ReimbursementEntity [reimburseId=" + reimburseId + ", employeeId=" + employeeId + ", pendingId="
-				+ pendingId + ", resolvedId=" + resolvedId + ", rejectedId=" + rejectedId + "]";
+	
+	
+	
+	
+	
+	public EmployeeEntity getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(EmployeeEntity employeeId) {
+		this.employeeId = employeeId;
 	}
 	public PendingReimbursementEntity getPendingId() {
 		return pendingId;
@@ -67,12 +74,6 @@ public class ReimbursementEntity implements Serializable{
 	}
 	public void setReimburseId(Integer reimburseId) {
 		this.reimburseId = reimburseId;
-	}
-	public Integer getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(Integer employeeId) {
-		this.employeeId = employeeId;
 	}
 
 	

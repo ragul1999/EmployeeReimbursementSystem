@@ -26,6 +26,20 @@ public class EmployeeEntity {
 	private String addedOn;
 	private String updatedOn;
 	
+	@OneToMany(mappedBy="employeeId")
+	List<ReimbursementEntity> reimbursements;
+	
+	
+	
+	
+
+	public List<ReimbursementEntity> getReimbursements() {
+		return reimbursements;
+	}
+
+	public void setReimbursements(List<ReimbursementEntity> reimbursements) {
+		this.reimbursements = reimbursements;
+	}
 
 	public Integer getEmployeeId() {
 		return employeeId;

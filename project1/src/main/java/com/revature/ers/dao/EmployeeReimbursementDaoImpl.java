@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import com.revature.ers.db.HibernateUtil;
+import com.revature.ers.model.Employee;
 import com.revature.ers.model.PendingReimbursement;
 import com.revature.ers.model.Reimbursement;
 import com.revature.ers.util.PendingReimbursementEntity;
@@ -34,7 +35,6 @@ public class EmployeeReimbursementDaoImpl implements EmployeeReimbursementDao{
 		try {
 			session.beginTransaction();
 			session.save(request);
-			session.flush();
 			session.getTransaction().commit();
 			session.close();
 			
